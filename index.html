@@ -318,9 +318,25 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
 #gridNone{grid-column:1/-1}
 .cta{box-shadow:0 10px 24px -14px rgba(20,18,16,.55)}
 .ghostbtn{box-shadow:none}
+/* v10 (10.29): 배송 방식 필터 + 타일 배송 표기 + 상세 서비스 3줄 — Away 상품 페이지의 'Free shipping / Easy returns / Coverage' 3줄 안내 참고 */
+.shipf{display:flex;gap:6px;flex-wrap:wrap}
+.shipf button{border:1.5px solid var(--line);background:transparent;border-radius:999px;padding:7px 12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--ink);transition:background .2s,border-color .2s,color .2s}
+.shipf button:hover{border-color:var(--ink)}
+.shipf button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.shopbar .left{display:flex;gap:10px;flex-wrap:wrap;align-items:center;flex:1 1 320px;min-width:0}
+.tile .shp{display:flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-2);margin-top:6px}
+.tile .shp i{width:6px;height:6px;border-radius:50%;background:var(--ink-2);display:inline-block;flex:none}
+.tile .shp.kr i{background:#2F6B4F}
+.svc{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--ink)}
+.svc li{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.svc li .mono{color:var(--ink-2);padding-top:2px;font-size:10.5px}
+.svc li b{display:block;font-size:14px}
+.svc li span.t{color:var(--ink-2)}
+.optsel{color:var(--ink-2);text-transform:none;letter-spacing:0;font-family:var(--f-body);font-size:13px;margin-left:6px}
+.steps-note{margin:14px 0 0;color:var(--ink-2);font-size:14px;max-width:62ch}
 </style>
 
-<div class="marq mono" aria-label="공지"><div class="track"><span><b>NEW · 내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>비행기 타는 날엔 공항 세트 46,900원</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>해외구매대행 7~14 영업일 · 오리지널 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span><span aria-hidden="true"><b>NEW · 내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>비행기 타는 날엔 공항 세트 46,900원</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>해외구매대행 7~14 영업일 · 오리지널 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span></div></div>
+<div class="marq mono" aria-label="공지"><div class="track"><span><b>NEW · SEOUL COLLECTION 한국 유산 모티프 케이스 7종 14,900원</b><b>내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>비행기 타는 날엔 공항 세트 46,900원</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>해외 상품 7~14 영업일 · 국내 제작 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span><span aria-hidden="true"><b>NEW · SEOUL COLLECTION 한국 유산 모티프 케이스 7종 14,900원</b><b>내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>비행기 타는 날엔 공항 세트 46,900원</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>해외 상품 7~14 영업일 · 국내 제작 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span></div></div>
 <header class="top"><div class="wrap">
   <a class="logo" href="#home">LUFT</a>
   <nav class="main mono">
@@ -398,7 +414,7 @@ function reveals(){ if(reduce||!('IntersectionObserver' in window))return;
   cleanup.push(()=>io.disconnect());
 }
 const tile=(id,i)=>{const p=P[id];return `<a class="tile reveal" data-c="${p.c}" href="#p-${id}" style="transition-delay:${(i%5)*60}ms"><div class="ph" style="background:${p.stage}"><span class="no mono">${String(i+1).padStart(2,'0')}</span>${p.c===NEWC?'<span class="badge">NEW</span>':''}${p.kind==='mto'?'<span class="badge" style="top:auto;bottom:10px;left:10px;right:auto;background:var(--paper);color:var(--ink)">주문제작</span>':''}${pimg(id)}<span class="qa" role="button" tabindex="0" data-qa="${id}" aria-label="${p.ko} 장바구니 담기">+ 담기</span></div>
-   <div class="nm">${p.name}</div><div class="ko">${p.ko}</div><div class="meta"><div class="pr">${won(p.price)}</div>${p.opts.length>1?`<span class="oc">${p.optLabel==='Model'?'기종':p.optLabel==='Type'?'타입':'컬러'} ${p.opts.length}가지</span>`:''}</div></a>`};
+   <div class="nm">${p.name}</div><div class="ko">${p.ko}</div><div class="meta"><div class="pr">${won(p.price)}</div>${p.opts.length>1?`<span class="oc">${p.optLabel==='Model'?'기종':p.optLabel==='Type'?'타입':'컬러'} ${p.opts.length}가지</span>`:''}</div><div class="shp ${p.ship==='kr'?'kr':''}"><i></i>${p.ship==='kr'?'국내 제작 · 2–4일':'해외배송 · 7–14일'}</div></a>`};
 
 /* ---------- scroll story (one per collection) ---------- */
 function storyHTML(k,label){const ids=COLL[k].ids, p0=P[ids[0]];return `
@@ -469,12 +485,13 @@ function home(anchor){
  setStage(P[COLL[NEWC].ids[0]].stage);
  app.innerHTML=`
  ${storyHTML(NEWC,`New · ${COLL[NEWC].name} · ${pad2(COLL[NEWC].ids.length)} items`)}
- <div class="trust"><div class="wrap"><div class="t"><b>무료 해외배송</b><span>전 상품, 금액 조건 없음</span></div><div class="t"><b>7–14 영업일</b><span>송장번호 문자 안내</span></div><div class="t"><b>한국어 고객센터</b><span>평일 10–18시, 하루 안에 답변</span></div><div class="t"><b>안전결제</b><span>토스페이먼츠 · 2개 이상 10% 할인</span></div></div></div>
+ <div class="trust"><div class="wrap"><div class="t"><b>전 상품 무료배송</b><span>금액 조건 없음 · 송장 문자 안내</span></div><div class="t"><b>해외 7–14 · 국내 2–4</b><span>해외 상품 / 국내 제작 케이스 (영업일)</span></div><div class="t"><b>한국어 고객센터</b><span>평일 10–18시, 하루 안에 답변</span></div><div class="t"><b>안전결제</b><span>토스페이먼츠 · 2개 이상 10% 할인</span></div></div></div>
 
  <section id="shop"><div class="wrap">
   <div class="sec-head reveal"><h2>가볍게 떠나는<br>물건 ${ORDER.length}가지</h2>
    <div class="tabs" id="tabs"><button type="button" data-f="all" aria-pressed="true">All ${ORDER.length}</button>${CK.map(k=>`<button type="button" data-f="${k}" aria-pressed="false">${COLL[k].name}</button>`).join('')}</div></div>
-  <div class="shopbar"><input class="srch" id="gq" type="search" placeholder="찾는 물건 (예: 목베개, 파우치, 케이스)" aria-label="상품 검색">
+  <div class="shopbar"><div class="left"><input class="srch" id="gq" type="search" placeholder="찾는 물건 (예: 목베개, 파우치, 케이스)" aria-label="상품 검색">
+   <div class="shipf" id="shipf" role="group" aria-label="배송 방식"><button type="button" data-s="all" aria-pressed="true">배송 전체</button><button type="button" data-s="kr" aria-pressed="false">국내 2–4일</button><button type="button" data-s="intl" aria-pressed="false">해외 7–14일</button></div></div>
    <div class="right"><span class="mono cnt" id="gcnt">${ORDER.length} items</span><select id="gsort" aria-label="정렬"><option value="rec">추천순</option><option value="low">낮은 가격순</option><option value="high">높은 가격순</option></select></div></div>
   <div class="grid" id="grid">${ORDER.map(tile).join('')}<p class="empty" id="gridNone" hidden>찾는 상품이 없어요. 다른 단어로 찾아보거나 <a href="#help/ask">1:1 문의</a>로 알려 주세요.</p></div>
  </div></section>
@@ -495,6 +512,7 @@ function home(anchor){
    <li><h3>통관</h3><p>받는 분 명의로 통관돼요. 송장번호는 문자로 보내드려요.</p></li>
    <li><h3>도착</h3><p>보통 7~14 영업일. 사진 후기를 남기면 다음 주문 3,000원 할인.</p></li>
   </ol>
+  <p class="steps-note reveal"><b style="color:var(--ink)">케이스(LUFT ORIGINAL · SEOUL COLLECTION)는 달라요.</b> 국내 제작소에서 주문마다 만들어 통관 없이 택배로 보내요. 통관부호가 필요 없고, 보통 결제 후 2~4 영업일이면 받아요.</p>
  </div></section>
 
  <section class="help-band"><div class="wrap row">
@@ -511,13 +529,14 @@ function home(anchor){
  const tabs=[...document.querySelectorAll('#tabs button')];
  // 탭(컬렉션) + 검색 + 정렬을 한 번에 적용. 상품이 늘어도 그리드 하나로 찾기 쉽게
  const grid=document.getElementById('grid'), gq=document.getElementById('gq'), gs=document.getElementById('gsort'), gcnt=document.getElementById('gcnt'), gnone=document.getElementById('gridNone');
- const tl=[...grid.querySelectorAll('.tile')]; let flt='all';
- tl.forEach((t,i)=>{const id=ORDER[i],p=P[id];t.dataset.i=i;t.dataset.id=id;t.dataset.s=[p.name,p.ko,p.word,COLL[p.c].name,...(p.opts||[])].join(' ').toLowerCase()});
+ const tl=[...grid.querySelectorAll('.tile')]; let flt='all', sflt='all';
+ tl.forEach((t,i)=>{const id=ORDER[i],p=P[id];t.dataset.i=i;t.dataset.id=id;t.dataset.ship=p.ship==='kr'?'kr':'intl';t.dataset.s=[p.name,p.ko,p.word,COLL[p.c].name,p.ship==='kr'?'국내 제작 케이스':'해외',...(p.opts||[])].join(' ').toLowerCase()});
  const applyGrid=()=>{const s=gq.value.trim().toLowerCase().split(/\s+/).filter(Boolean), so=gs.value;let n=0;
   const sorted=[...tl].sort((a,b)=>{const pa=P[a.dataset.id].price,pb=P[b.dataset.id].price;return so==='low'?pa-pb||a.dataset.i-b.dataset.i:so==='high'?pb-pa||a.dataset.i-b.dataset.i:a.dataset.i-b.dataset.i});
-  sorted.forEach(t=>{grid.insertBefore(t,gnone);const ok=(flt==='all'||t.dataset.c===flt)&&s.every(w=>t.dataset.s.includes(w));t.hidden=!ok;t.classList.remove('pre');if(ok)n++});
+  sorted.forEach(t=>{grid.insertBefore(t,gnone);const ok=(flt==='all'||t.dataset.c===flt)&&(sflt==='all'||t.dataset.ship===sflt)&&s.every(w=>t.dataset.s.includes(w));t.hidden=!ok;t.classList.remove('pre');if(ok)n++});
   gcnt.textContent=`${n} item${n===1?'':'s'}`;gnone.hidden=n>0};
  gq.oninput=applyGrid; gs.onchange=applyGrid;
+ const sb2=[...document.querySelectorAll('#shipf button')]; sb2.forEach(b=>b.onclick=()=>{sb2.forEach(x=>x.setAttribute('aria-pressed',x===b));sflt=b.dataset.s;applyGrid()});
  tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>x.setAttribute('aria-pressed',x===b));flt=b.dataset.f;applyGrid()});
  document.querySelectorAll('.story').forEach(mountStory);
  reveals();
@@ -554,12 +573,16 @@ function product(id){
   </div>
   <aside class="pd-buy">
    <div><div class="mono" style="color:var(--ink-2)">${p.ko}</div><div style="font-family:var(--f-display);font-weight:800;font-stretch:78%;font-size:46px;line-height:1.05;font-variant-numeric:tabular-nums">${won(p.price)}</div><div style="color:var(--ink-2);font-size:13.5px">${p.ship==='kr'?'무료배송 · 국내 주문 제작 · 결제 후 보통 2~4 영업일 도착':'무료 해외배송 · 2개 이상 10% 할인'}</div></div>
-   <div><div class="mono" style="margin-bottom:8px">${p.optLabel||'Color'}</div><div class="opts" id="opts">${p.opts.map((o,i)=>`<button type="button" class="opt" aria-pressed="${i===0}">${o}</button>`).join('')}</div></div>
+   <div><div class="mono" style="margin-bottom:8px">${p.optLabel||'Color'}<span class="optsel" id="optSel">${esc(p.opts[0])}</span></div><div class="opts" id="opts">${p.opts.map((o,i)=>`<button type="button" class="opt" aria-pressed="${i===0}">${o}</button>`).join('')}</div></div>
    ${(p.custom||[]).map(c=>`<div class="field"><label for="cu-${c.key}">${c.label}</label><input id="cu-${c.key}" data-cu="${c.key}" maxlength="${c.max}" autocomplete="off" ${c.required?'required':''} style="text-transform:${c.upper?'uppercase':'none'}"></div>`).join('')}
    ${p.custom?`<div class="legal-note" id="cuPrev" style="background:#fff"><b>각인 미리보기</b> · <span id="cuPrevTxt">${p.custom.map(c=>c.key.toUpperCase()+': (기본 문구)').join(' · ')}</span><br><span style="font-size:12px">입력한 문구 그대로 제작처에 전달돼요. 영문·숫자·한글만 가능하고, 주문 제작이라 결제 후 2시간 지나면 바꿀 수 없어요.</span></div>`:''}
    <div class="buy-row"><div class="qty"><button type="button" id="qm" aria-label="수량 줄이기">−</button><output id="qv">1</output><button type="button" id="qp" aria-label="수량 늘리기">+</button></div>
     <button class="cta" type="button" id="addBtn">장바구니 담기</button>
     <button class="cta ghostbtn" type="button" id="buyNow">바로 구매</button></div>
+   <ul class="svc">${p.ship==='kr'
+    ?`<li><span class="mono">Delivery</span><div><b>국내 제작 · 보통 2~4 영업일</b><span class="t">무료배송 · 통관부호 필요 없음 · 송장 문자 안내</span></div></li><li><span class="mono">Returns</span><div><b>주문 제작이라 단순 변심 반품은 어려워요</b><span class="t">인쇄 불량·파손·다른 기종은 다시 만들어 드려요 · <a href="#help/return">접수</a></span></div></li>`
+    :`<li><span class="mono">Delivery</span><div><b>해외배송 · 보통 7~14 영업일</b><span class="t">무료배송 · 받는 분 명의로 통관 · 송장 문자 안내</span></div></li><li><span class="mono">Returns</span><div><b>수령 후 7일 이내 접수</b><span class="t">불량·오배송은 반송비 LUFT 부담 · <a href="#help/return">접수</a></span></div></li>`}
+    <li><span class="mono">Pay</span><div><b>토스페이먼츠 안전결제</b><span class="t">아무거나 2개 담으면 10% 할인 (세트 제외)</span></div></li></ul>
    ${inSet?`<a class="legal-note" href="#sets" style="text-decoration:none;display:block;background:${p.stage};border-color:transparent"><b>${inSet.name}</b>에 들어 있어요 · ${inSet.ko} · <b>${won(inSet.price)}</b> (${won(listSum(inSet)-inSet.price)} 절약) →</a>`:''}
    <div class="legal-note">${p.kind==='mto'?'LUFT가 디자인하고 국내 제작소에서 주문마다 한 개씩 만드는 상품이에요. 주문에 따라 개별 생산되는 상품이라 단순 변심에 의한 청약철회는 제한돼요(전자상거래법 제17조 제2항). 인쇄 불량·파손은 다시 만들어 드려요.':'해외구매대행 상품입니다. 「전기용품 및 생활용품 안전관리법」 안전관리대상 여부를 확인한 품목만 판매하며, 구매자 명의로 통관됩니다.'}</div>
   </aside>
@@ -568,7 +591,7 @@ function product(id){
   <div class="sec-head"><h2 style="font-size:clamp(32px,4vw,48px)">${COLL[p.c].name}<br>같이 보면 좋은 것</h2></div>
   <div class="related">${sib.map(x=>`<a class="tile" href="#p-${x}"><div class="ph" style="background:${P[x].stage}">${pimg(x)}</div><div class="nm">${P[x].name}</div><div class="pr">${won(P[x].price)}</div></a>`).join('')}</div>
  </div></section>`;
- document.querySelectorAll('#opts .opt').forEach(b=>b.onclick=()=>{document.querySelectorAll('#opts .opt').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');opt=b.textContent});
+ document.querySelectorAll('#opts .opt').forEach(b=>b.onclick=()=>{document.querySelectorAll('#opts .opt').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');opt=b.textContent;const os=document.getElementById('optSel');if(os)os.textContent=opt});
  const qv=document.getElementById('qv');
  document.getElementById('qm').onclick=()=>{q=Math.max(1,q-1);qv.textContent=q};
  document.getElementById('qp').onclick=()=>{q=Math.min(9,q+1);qv.textContent=q};
@@ -678,8 +701,12 @@ async function payReturn(){
  try{
   const r=await fetch(CFG.apiBase+'/api/payments/confirm',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({paymentKey:q.get('paymentKey'),orderId:q.get('orderId'),amount:Number(q.get('amount'))})});
   const d=await r.json(); if(!r.ok) throw new Error(d.error||'결제 승인에 실패했어요');
+  const hasKr=cart.some(c=>isKr(c.id)), hasIntl=cart.some(c=>!isKr(c.id));
   cart=[];save();
-  app.innerHTML=`<div class="wrap panel"><p class="mono">Order ${d.orderId}</p><h2>주문이 완료됐어요</h2><p style="color:var(--ink-2);max-width:52ch">결제 확인 후 영업일 1~2일 안에 해외 판매자에게 발주하고, 송장번호가 나오면 문자로 알려드릴게요. 도착까지 보통 7~14 영업일 걸려요.</p><p><a class="cta" href="#home">쇼핑 계속하기</a></p></div>`;
+  const msg=hasKr&&hasIntl?'주문하신 상품은 두 곳에서 따로 출발해요. 국내 제작 케이스는 보통 2~4 영업일, 해외 상품은 결제 확인 후 영업일 1~2일 안에 발주해 보통 7~14 영업일 걸려요. 송장번호는 각각 문자로 알려드릴게요.'
+   :hasKr?'국내 제작소에서 주문하신 문구로 만들어 바로 택배로 보내요. 보통 2~4 영업일이면 받아요. 문구를 바꾸려면 결제 후 2시간 안에 1:1 문의로 알려 주세요.'
+   :'결제 확인 후 영업일 1~2일 안에 해외 판매자에게 발주하고, 송장번호가 나오면 문자로 알려드릴게요. 도착까지 보통 7~14 영업일 걸려요.';
+  app.innerHTML=`<div class="wrap panel"><p class="mono">Order ${esc(d.orderId)}</p><h2>주문이 완료됐어요</h2><p style="color:var(--ink-2);max-width:52ch">${msg}</p><p style="color:var(--ink-2);font-size:13.5px">주문번호는 <a href="#help/track">주문 조회</a>에 필요해요. 화면을 캡처해 두면 편해요.</p><p><a class="cta" href="#home">쇼핑 계속하기</a></p></div>`;
  }catch(e){app.innerHTML=`<div class="wrap panel"><h2>결제 승인에 문제가 생겼어요</h2><p style="color:var(--ink-2)">${String(e.message).replace(/</g,'&lt;')} · 결제가 됐는지 확인 후 연락드릴게요. 주문번호 ${(q.get('orderId')||'').replace(/</g,'&lt;')}</p></div>`}
  clean(); return true;
 }
@@ -725,11 +752,14 @@ const HELP=[
  ['배송·통관','박스에 가격표나 영수증이 들어 있나요?','판매자에게 가격표·영수증을 넣지 말아 달라고 요청해서 발주해요. 선물로 보내셔도 돼요.'],
  ['배송·통관','통관부호를 잘못 넣었어요','발주 전이면 바로 고칠 수 있어요. 1:1 문의에 주문번호와 맞는 통관부호를 남겨 주세요. 이미 통관 중이면 관세청에서 정정 안내 문자가 올 수 있어요. 받는 분 이름과 통관부호 명의가 같아야 해요.'],
  ['배송·통관','배송지를 바꾸고 싶어요','해외 발주 전(결제 후 영업일 1일 이내)이면 바꿀 수 있어요. 발주 뒤에는 판매자에게 요청해 보고 가능 여부를 알려드려요. 국내 택배사로 넘어온 뒤에는 택배사에 직접 요청하는 게 빨라요.'],
+ ['배송·통관','케이스랑 해외 상품을 같이 주문했어요','따로 도착해요. 케이스는 국내 제작소에서 보통 2~4 영업일, 해외 상품은 7~14 영업일이 걸려요. 송장번호도 각각 문자로 보내드려요. 할인은 한 주문으로 계산돼서 2개 이상 10% 할인은 그대로 적용돼요.'],
  ['배송·통관','14 영업일이 지났는데 안 와요','명절·쇼핑 행사 기간이나 통관 검사가 걸리면 늦어질 수 있어요. 1:1 문의에서 "배송 문의"로 주문번호를 남겨 주시면 판매자·배송사에 위치를 확인해서 문자로 알려드려요.'],
  ['교환·반품','반품할 수 있나요?','수령 후 7일 이내 청약철회를 접수할 수 있어요. 단순 변심은 해외 반송비가 생길 수 있어 접수할 때 금액을 먼저 알려드려요.'],
  ['교환·반품','불량이거나 다른 상품이 왔어요','교환·반품 접수에서 "불량·오배송"을 고르고, 상품 사진을 문자로 보내 주세요. 확인 후 재발송하거나 전액 환불해요. 반송비는 LUFT가 부담해요.'],
  ['교환·반품','환불은 언제 되나요?','환불 확정 후 카드는 영업일 3~5일, 간편결제는 1~3일 안에 결제 수단으로 돌아가요.'],
  ['교환·반품','오리지널 케이스도 반품되나요?','LUFT ORIGINAL 케이스는 주문하신 기종·문구로 한 개씩 만들어서 단순 변심 반품은 어려워요. 인쇄 불량, 파손, 다른 기종이 온 경우는 사진을 보내 주시면 다시 만들어 드려요.'],
+ ['상품','케이스 각인 문구를 바꾸고 싶어요','결제 후 2시간 안이면 바꿀 수 있어요. 1:1 문의에서 "상품 문의"를 골라 주문번호와 바꿀 문구를 남겨 주세요. 2시간이 지나면 제작이 시작돼 바꾸기 어려워요.'],
+ ['상품','케이스는 어떤 기종이 있나요?','상품 페이지의 기종 목록에서 고를 수 있어요. 찾는 기종이 없으면 1:1 문의로 남겨 주세요. 제작 가능 여부를 확인해서 알려드려요.'],
  ['상품','사진이랑 실물이 다를 수 있나요?','지금은 판매자 제공 이미지를 쓰고 있고, 실물 촬영본으로 차례로 바꾸고 있어요. 색감은 화면에 따라 조금 다를 수 있어요.'],
  ['상품','KC 인증이 필요한 상품은 없나요?','전기·배터리 제품과 어린이 제품처럼 국내 안전인증 대상인 품목은 팔지 않아요.']
 ];
@@ -752,7 +782,7 @@ function help(sub){
    <form class="card" id="lk" novalidate>
     <div class="two"><div class="field"><label for="lkId">주문번호</label><input id="lkId" placeholder="LUFT-261027-XXXXXX" autocomplete="off"></div><div class="field"><label for="lkPh">휴대폰 번호</label><input id="lkPh" inputmode="tel" placeholder="주문할 때 쓴 번호" autocomplete="tel"></div></div>
     <div><button class="cta" type="submit">조회하기 <span class="arr">→</span></button></div>
-    <div class="result" id="lkOut">${timeline(-1)}<p style="margin:12px 0 0;color:var(--ink-2);font-size:13.5px">주문번호는 결제 완료 화면과 안내 문자에 있어요.</p></div>
+    <div class="result" id="lkOut">${timeline(-1)}<p style="margin:12px 0 0;color:var(--ink-2);font-size:13.5px">주문번호는 결제 완료 화면과 안내 문자에 있어요. 위 단계는 해외 상품 기준이고, 국내 제작 케이스는 제작 → 국내 택배 순서로 보통 2~4 영업일이에요.</p></div>
    </form>
    <form class="card" id="tr" novalidate style="margin-top:12px">
     <div class="field"><label for="trNo">송장번호로 바로 추적</label><input id="trNo" placeholder="문자로 받은 송장번호" autocomplete="off"></div>
@@ -833,6 +863,5 @@ document.getElementById('cartBtn').onclick=()=>{location.hash='cart'};
 addEventListener('hashchange',route);
 save(); payReturn().then(handled=>{ if(!handled) route(); });
 </script>
-
 <script src="https://probe2928-crypto.github.io/chainbrief/network.js" data-site="luft" defer></script>
 </body></html>
