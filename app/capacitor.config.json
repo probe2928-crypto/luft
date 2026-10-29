@@ -1,0 +1,20 @@
+{
+  "appId": "kr.luft.store",
+  "appName": "LUFT",
+  "webDir": "www",
+  "backgroundColor": "#FBF6F1",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1500,
+      "launchAutoHide": false,
+      "backgroundColor": "#F1C7A6",
+      "showSpinner": false,
+      "androidScaleType": "CENTER_CROP"
+    },
+    "StatusBar": { "style": "DARK", "backgroundColor": "#141210" },
+    "SystemBars": { "insetsHandling": "css" }
+  },
+  "ios": { "contentInset": "never", "backgroundColor": "#FBF6F1", "scrollEnabled": true },
+  "android": { "backgroundColor": "#FBF6F1", "allowMixedContent": false },
+  "server": { "androidScheme": "https", "iosScheme": "capacitor" }
+}

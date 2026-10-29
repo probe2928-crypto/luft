@@ -1,0 +1,26 @@
+{
+  "name": "luft-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "LUFT 스토어 iOS·안드로이드 앱 (Capacitor) — 화면은 사이트(index.html·catalog.js)를 앱에 넣어서 씀",
+  "scripts": {
+    "www": "node build-www.mjs",
+    "sync": "node build-www.mjs && cap sync",
+    "assets": "capacitor-assets generate --assetPath resources --iconBackgroundColor #F1C7A6 --iconBackgroundColorDark #F1C7A6 --splashBackgroundColor #F1C7A6 --splashBackgroundColorDark #141210"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/app": "^8.0.0",
+    "@capacitor/browser": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/haptics": "^8.0.0",
+    "@capacitor/ios": "^8.0.0",
+    "@capacitor/share": "^8.0.0",
+    "@capacitor/splash-screen": "^8.0.0",
+    "@capacitor/status-bar": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.0.0"
+  }
+}

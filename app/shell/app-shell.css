@@ -1,0 +1,11 @@
+/* LUFT 앱 전용 스타일 (사이트 위에 얹힘) */
+.app-share{margin-top:10px;width:100%;padding:13px 16px;border:1px solid var(--line);background:transparent;border-radius:999px;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em}
+.app-note{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:120;display:flex;align-items:center;gap:10px;padding:13px 14px 13px 16px;background:var(--ink);color:var(--paper);border-radius:14px;font-size:13.5px;line-height:1.45;box-shadow:0 10px 30px rgba(0,0,0,.18);transform:translateY(140%);opacity:0;transition:transform .28s ease,opacity .28s ease}
+.app-note.on{transform:none;opacity:1}
+.app-note span{flex:1;min-width:0}
+.app-note button{flex:none;background:var(--paper);color:var(--ink);border:0;border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:700}
+.app-note button.x{background:none;color:var(--paper);padding:4px 6px;font-size:18px;font-weight:400}
+/* 앱에서는 텍스트 길게 눌러 선택·확대 막기 (입력칸 제외) */
+.luft-native body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.luft-native input,.luft-native textarea,.luft-native [contenteditable]{-webkit-user-select:text;user-select:text}
+.luft-native a,.luft-native button{-webkit-tap-highlight-color:transparent}

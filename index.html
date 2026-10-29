@@ -854,13 +854,18 @@ function route(){
  else if(h==='p-set'||h==='sets') home('set-band');
  else if(h==='shop') home('shop');
  else if(h==='cart') cartView();
- else if(h==='checkout') checkout();
+ else if(h==='checkout'){ if(LIVE&&window.LUFT_APP&&window.LUFT_APP.checkout(cart)) return; checkout(); }   // 앱: 결제는 브라우저(토스)로 넘김
  else if(h==='info') info();
  else if(h==='help'||h.startsWith('help/')) help(h.split('/')[1]);
  else home();
 }
 document.getElementById('cartBtn').onclick=()=>{location.hash='cart'};
 addEventListener('hashchange',route);
+/* 앱에서 결제만 넘어올 때: ?cart=<base64url JSON> → 장바구니로 받고 바로 결제 화면 */
+(function(){try{const q=new URLSearchParams(location.search),c=q.get('cart');if(!c)return;
+ const j=JSON.parse(decodeURIComponent(escape(atob(c.replace(/-/g,'+').replace(/_/g,'/')))));
+ if(Array.isArray(j)){const ok=j.filter(x=>x&&(isSet(x.id)||P[x.id])&&x.q>0).map(x=>{const o={id:x.id,opt:String(x.opt||''),q:Math.min(9,x.q|0)};if(x.custom&&typeof x.custom==='object')o.custom=x.custom;return o});if(ok.length)cart=ok}
+ q.delete('cart');history.replaceState(null,'',location.pathname+(q.toString()?'?'+q:'')+'#checkout');}catch(e){}})();
 save(); payReturn().then(handled=>{ if(!handled) route(); });
 </script>
 <script src="https://probe2928-crypto.github.io/chainbrief/network.js" data-site="luft" defer></script>
