@@ -9,3 +9,16 @@
 .luft-native body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .luft-native input,.luft-native textarea,.luft-native [contenteditable]{-webkit-user-select:text;user-select:text}
 .luft-native a,.luft-native button{-webkit-tap-highlight-color:transparent}
+/* 아래 탭 */
+.luft-app header.top nav.main{display:none}
+.luft-app body{padding-bottom:calc(62px + env(safe-area-inset-bottom,0px))}
+.app-tabs{position:fixed;left:0;right:0;bottom:0;z-index:90;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(251,246,241,.96);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.app-tabs a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;height:58px;text-decoration:none;color:var(--ink-2);font-size:11px;letter-spacing:.02em}
+.app-tabs svg{width:23px;height:23px}
+.app-tabs a.on{color:var(--ink);font-weight:700}
+.app-tabs a.on svg{stroke-width:2}
+.app-tabs b{display:inline-block;min-width:16px;padding:0 4px;border-radius:999px;background:var(--accent);color:#fff;font-size:10px;line-height:16px;text-align:center}
+.app-tabs b:empty{display:none}
+.luft-app .sticky-buy{bottom:calc(58px + env(safe-area-inset-bottom,0px));padding-bottom:0}
+.luft-app .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+.luft-app .app-note{bottom:calc(72px + env(safe-area-inset-bottom,0px))}

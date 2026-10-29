@@ -356,15 +356,16 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
       <div><span>상호</span><span>루프트(LUFT)</span></div>
       <div><span>대표</span><span>박세준</span></div>
       <div><span>사업자등록번호</span><span>780-21-02375 · <a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=7802102375" target="_blank" rel="noopener">사업자정보확인</a></span></div>
-      <div><span>통신판매업신고</span><span class="todo">신고 진행 중</span></div>
+      <div><span>통신판매업신고</span><span>간이과세자 신고 면제 (전자상거래법 · 공정위 면제 기준 고시)</span></div>
       <div><span>사업장 주소</span><span>인천광역시 영종구 은하수로 306</span></div>
       <div><span>대표전화</span><span><a href="tel:010-5529-5086">010-5529-5086</a></span></div>
       <div><span>이메일</span><span><a href="mailto:probe2928@gmail.com">probe2928@gmail.com</a></span></div>
       <div><span>고객센터</span><span>평일 10:00–18:00 · <a href="#help">1:1 문의</a></span></div>
       <div><span>과세유형</span><span>간이과세자 · 해외직구대행업, 전자상거래 소매업</span></div>
+      <div><span>호스팅 제공자</span><span>GitHub, Inc. (GitHub Pages)</span></div>
     </div>
     <div><a href="#help">고객센터 · 주문 조회</a><br><a href="#info">배송·교환·환불 안내</a><br><a href="#info">해외구매대행 고지</a><br><a href="#info">이용약관 · 개인정보처리방침</a></div>
-    <div>본 사이트의 상품은 해외구매대행 상품으로, 구매자 명의로 통관되며 해외 판매자가 구매자에게 직접 배송합니다. 상품 이미지는 판매자 제공 이미지이며, 실물 촬영본으로 순차 교체합니다.</div>
+    <div>상품 페이지에 &lsquo;해외구매대행&rsquo;으로 표시된 상품은 구매자 명의로 통관되며 해외 판매자가 구매자에게 직접 배송합니다. LUFT 디자인 케이스(서울 컬렉션 · LUFT ORIGINAL)는 국내에서 주문 제작해 발송합니다. 해외구매대행 상품 이미지는 판매자 제공 이미지이며, 실물 촬영본으로 순차 교체합니다.</div>
   </div>
 </div></footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -640,7 +641,7 @@ function checkout(){
   <div class="field" ${needPcc?'':'hidden'}><label for="pc">개인통관고유부호</label><input id="pc" placeholder="P로 시작하는 13자리" maxlength="13" ${needPcc?'required':''}><small>관세청 유니패스에서 발급받을 수 있어요. 받는 분 명의여야 합니다.</small><span class="err" id="pcErr" hidden>P로 시작하는 13자리(예: P123456789012)를 입력해 주세요.</span></div>
   <div class="field"><label for="memo">배송 메모 (선택)</label><textarea id="memo" rows="2"></textarea></div>
   ${needPcc?'<label class="check"><input type="checkbox" id="ag1" required><span>해외구매대행 상품이며 구매자 명의로 통관되고, 배송에 7~14 영업일이 걸리는 것을 확인했습니다.</span></label>':''}
-  ${hasMto?'<label class="check"><input type="checkbox" id="ag3" required><span>주문 제작 상품(LUFT ORIGINAL)은 주문에 따라 한 개씩 만들어 단순 변심 청약철회가 제한되고, 기종·각인 문구가 맞는지 확인했습니다.</span></label>':''}
+  ${hasMto?'<label class="check"><input type="checkbox" id="ag3" required><span>주문 제작 상품(LUFT 디자인 케이스)은 주문에 따라 한 개씩 만들어 단순 변심 청약철회가 제한되고, 기종·각인 문구가 맞는지 확인했습니다.</span></label>':''}
   <label class="check"><input type="checkbox" id="ag2" required><span>${needPcc?'통관을 위한 개인정보(이름, 연락처, 주소, 개인통관고유부호) 수집과 해외 판매자·배송사 제공(국외 이전)에 동의합니다.':'배송을 위한 개인정보(이름, 연락처, 주소) 수집과 국내 제작처·택배사 제공에 동의합니다.'}</span></label>
   <div class="sum"><div><span>상품 금액</span><span>${won(t.sub)}</span></div><div><span>할인</span><span>−${won(t.disc)}</span></div><div class="tot"><span>결제 금액</span><span>${won(t.tot)}</span></div></div>
   <div class="paybox">
@@ -735,7 +736,7 @@ function info(){
   <li><b>개인정보 보호책임자:</b> 박세준 (probe2928@gmail.com)</li>
  </ul>
  <h3>고객센터</h3><p>주문 조회, 교환·반품 접수, 1:1 문의는 <a href="#help">고객센터</a>에서 할 수 있어요. 평일 10:00–18:00 답변.</p>
- <h3>사업자 정보</h3><p>상호 루프트(LUFT) · 대표 박세준 · 사업자등록번호 780-21-02375 · 사업장 인천광역시 영종구 은하수로 306 · 통신판매업 신고 진행 중 · 대표전화 010-5529-5086 · 이메일 probe2928@gmail.com</p></div>`;
+ <h3>사업자 정보</h3><p>상호 루프트(LUFT) · 대표 박세준 · 사업자등록번호 780-21-02375 · 사업장 인천광역시 영종구 은하수로 306 · 통신판매업 신고 면제(간이과세자) · 대표전화 010-5529-5086 · 이메일 probe2928@gmail.com · 호스팅 제공자 GitHub, Inc.</p></div>`;
 }
 
 

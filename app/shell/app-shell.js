@@ -85,6 +85,38 @@
   addEventListener("hashchange", function () { setTimeout(decorate, 60); });
   addEventListener("load", function () { setTimeout(decorate, 120); });
 
+  // 아래 탭 (홈 · 샵 · 장바구니 · 고객센터) — 위쪽 메뉴는 앱에서 숨김
+  var TABS = [["home", "홈", '<path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>'],
+    ["shop", "샵", '<rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/>'],
+    ["cart", "장바구니", '<path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/>'],
+    ["help", "고객센터", '<circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.5"/><circle cx="12" cy="17" r=".6" fill="currentColor"/>']];
+  function tabbar() {
+    if (document.getElementById("appTabs")) return;
+    var nav = document.createElement("nav"); nav.id = "appTabs"; nav.className = "app-tabs"; nav.setAttribute("aria-label", "메뉴");
+    nav.innerHTML = TABS.map(function (t) {
+      return '<a href="#' + t[0] + '" data-tab="' + t[0] + '"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">' + t[2] + '</svg><span>' + t[1] + (t[0] === "cart" ? ' <b id="appCartN"></b>' : "") + "</span></a>";
+    }).join("");
+    document.body.appendChild(nav);
+    nav.addEventListener("click", function (e) {
+      var a = e.target.closest("a[data-tab]"); if (!a) return;
+      haptic();
+      if (location.hash === "#" + a.dataset.tab) { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+    });
+    sync();
+  }
+  function sync() {
+    var h = (location.hash || "#home").slice(1), cur = /^(cart|checkout)$/.test(h) ? "cart" : /^help/.test(h) ? "help" : /^(shop|sets|p-)/.test(h) ? "shop" : "home";
+    document.querySelectorAll("#appTabs a").forEach(function (a) { a.classList.toggle("on", a.dataset.tab === cur); if (a.dataset.tab === cur) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    var c = document.getElementById("cartCount"), n = document.getElementById("appCartN");
+    if (c && n) { n.textContent = c.textContent !== "0" ? c.textContent : ""; }
+  }
+  addEventListener("hashchange", sync);
+  document.addEventListener("DOMContentLoaded", function () {
+    tabbar();
+    var c = document.getElementById("cartCount");
+    if (c && window.MutationObserver) new MutationObserver(sync).observe(c, { childList: true, characterData: true, subtree: true });
+  });
+
   // 오프라인 안내
   addEventListener("offline", function () { note("인터넷 연결이 끊겼어요. 상품은 볼 수 있지만 주문·결제는 연결 후에 돼요."); });
 
