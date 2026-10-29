@@ -1,0 +1,37 @@
+name: 스토어 이미지 (앱)
+# app/ 이 바뀌면 앱 화면(app/www)을 앱 모드 그대로 찍어 app/store/ 에 저장
+# (앱 빌드는 probe2928-crypto/chainbrief 의 '스토어 앱 (LUFT · QURATOR)' 워크플로)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["app/shell/**", "app/store-shots.mjs", "app/build-www.mjs", "catalog.js", ".github/workflows/store-shots.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: store-shots
+  cancel-in-progress: true
+jobs:
+  shots:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: 준비
+        working-directory: app
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.48.2
+          npx playwright install --with-deps chromium > /dev/null
+          sudo apt-get install -y -qq fonts-noto-cjk > /dev/null || true
+          node build-www.mjs
+      - run: node store-shots.mjs
+        working-directory: app
+      - name: 저장
+        run: |
+          git config user.name "luft-bot"; git config user.email "luft-bot@users.noreply.github.com"
+          git add app/store
+          git diff --cached --quiet && exit 0
+          git commit -qm "스토어 이미지 갱신 (앱)"
+          for i in 1 2 3 4; do git pull -q --rebase && git push -q && break; sleep 8; done
