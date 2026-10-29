@@ -63,8 +63,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 14900,
    "print": "print/case-ilwol.png",
@@ -135,7 +137,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -150,8 +152,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 14900,
    "print": "print/case-moonjar.png",
@@ -222,7 +226,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -237,8 +241,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 14900,
    "print": "print/case-celadon.png",
@@ -309,7 +315,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -324,8 +330,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 14900,
    "print": "print/case-najeon.png",
@@ -396,7 +404,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -411,8 +419,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 14900,
    "name": "INITIAL",
@@ -476,7 +486,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -501,8 +511,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 14900,
    "name": "ROUTE",
@@ -581,7 +593,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -606,8 +618,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 18900,
    "name": "STAMP",
@@ -681,7 +695,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -707,8 +721,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "name": "TAG",
    "word": "TAG",
@@ -775,7 +791,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -1549,8 +1565,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 14900,
    "print": "print/case-peony.png",
@@ -1621,7 +1639,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -1636,8 +1654,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 14900,
    "print": "print/case-bojagi.png",
@@ -1708,7 +1728,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
@@ -1723,8 +1743,10 @@ window.LUFT_CATALOG = {
    "opts": [
     "아이폰 18 Pro",
     "아이폰 18 Pro Max",
+    "아이폰 17",
     "아이폰 17 Pro",
-    "아이폰 17 Pro Max"
+    "아이폰 17 Pro Max",
+    "아이폰 Air"
    ],
    "price": 14900,
    "print": "print/case-dancheong.png",
@@ -1795,7 +1817,7 @@ window.LUFT_CATALOG = {
     ],
     [
      "기종",
-     "아이폰 18·17 Pro / Pro Max"
+     "아이폰 18 Pro·Pro Max / 17·17 Pro·Pro Max / Air"
     ],
     [
      "배송",
