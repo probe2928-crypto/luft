@@ -555,7 +555,7 @@ function product(id){
    <div><div class="mono" style="color:var(--ink-2)">${p.ko}</div><div style="font-family:var(--f-display);font-weight:800;font-stretch:78%;font-size:46px;line-height:1.05;font-variant-numeric:tabular-nums">${won(p.price)}</div><div style="color:var(--ink-2);font-size:13.5px">${p.ship==='kr'?'무료배송 · 국내 주문 제작 · 결제 후 보통 2~4 영업일 도착':'무료 해외배송 · 2개 이상 10% 할인'}</div></div>
    <div><div class="mono" style="margin-bottom:8px">${p.optLabel||'Color'}</div><div class="opts" id="opts">${p.opts.map((o,i)=>`<button type="button" class="opt" aria-pressed="${i===0}">${o}</button>`).join('')}</div></div>
    ${(p.custom||[]).map(c=>`<div class="field"><label for="cu-${c.key}">${c.label}</label><input id="cu-${c.key}" data-cu="${c.key}" maxlength="${c.max}" autocomplete="off" ${c.required?'required':''} style="text-transform:${c.upper?'uppercase':'none'}"></div>`).join('')}
-   ${p.custom?`<div class="legal-note" id="cuPrev" style="background:#fff"><b>각인 미리보기</b> · <span id="cuPrevTxt">${p.custom.map(c=>c.key.toUpperCase()+': (기본 문구)').join(' · ')}</span><br><span style="font-size:12px">입력한 문구 그대로 제작처에 전달돼요. 영문·숫자만 가능하고, 주문 제작이라 결제 후 2시간 지나면 바꿀 수 없어요.</span></div>`:''}
+   ${p.custom?`<div class="legal-note" id="cuPrev" style="background:#fff"><b>각인 미리보기</b> · <span id="cuPrevTxt">${p.custom.map(c=>c.key.toUpperCase()+': (기본 문구)').join(' · ')}</span><br><span style="font-size:12px">입력한 문구 그대로 제작처에 전달돼요. 영문·숫자·한글만 가능하고, 주문 제작이라 결제 후 2시간 지나면 바꿀 수 없어요.</span></div>`:''}
    <div class="buy-row"><div class="qty"><button type="button" id="qm" aria-label="수량 줄이기">−</button><output id="qv">1</output><button type="button" id="qp" aria-label="수량 늘리기">+</button></div>
     <button class="cta" type="button" id="addBtn">장바구니 담기</button>
     <button class="cta ghostbtn" type="button" id="buyNow">바로 구매</button></div>
@@ -571,10 +571,10 @@ function product(id){
  const qv=document.getElementById('qv');
  document.getElementById('qm').onclick=()=>{q=Math.max(1,q-1);qv.textContent=q};
  document.getElementById('qp').onclick=()=>{q=Math.min(9,q+1);qv.textContent=q};
- const cuObj=()=>{const o={};document.querySelectorAll('[data-cu]').forEach(i=>{const c=p.custom.find(c=>c.key===i.dataset.cu);let v=i.value.trim().replace(/[^A-Za-z0-9 .\-'&]/g,'').slice(0,c.max);if(c.upper)v=v.toUpperCase();if(v)o[c.key]=v});return o};
+ const cuObj=()=>{const o={};document.querySelectorAll('[data-cu]').forEach(i=>{const c=p.custom.find(c=>c.key===i.dataset.cu);let v=i.value.trim().replace(/[^A-Za-z0-9가-힣 .\-'&]/g,'').slice(0,c.max);if(c.upper)v=v.toUpperCase();if(v)o[c.key]=v});return o};
  const cuOk=()=>{const miss=(p.custom||[]).find(c=>c.required&&(cuObj()[c.key]||'').replace(/[^A-Za-z0-9]/g,'').length<(c.min||1));if(miss){toast(miss.label.split(' (')[0]+'을(를) 입력해 주세요');document.getElementById('cu-'+miss.key).focus();return false}return true};
- const fullOpt=()=>{const cu=[...document.querySelectorAll('[data-cu]')].map(i=>{const v=i.value.trim().replace(/[^A-Za-z0-9 .\-'&]/g,'');return v?`${i.dataset.cu.toUpperCase()}:${p.custom.find(c=>c.key===i.dataset.cu).upper?v.toUpperCase():v}`:''}).filter(Boolean);return [opt,...cu].join(' / ')};
- document.querySelectorAll('[data-cu]').forEach(i=>i.oninput=()=>{const c=p.custom.find(c=>c.key===i.dataset.cu);i.value=i.value.replace(/[^A-Za-z0-9 .\-'&]/g,'').slice(0,c.max);const o=cuObj();const t=document.getElementById('cuPrevTxt');if(t)t.textContent=p.custom.map(c=>c.key.toUpperCase()+': '+(o[c.key]||'(기본 문구)')).join(' · ')});
+ const fullOpt=()=>{const cu=[...document.querySelectorAll('[data-cu]')].map(i=>{const v=i.value.trim().replace(/[^A-Za-z0-9가-힣 .\-'&]/g,'');return v?`${i.dataset.cu.toUpperCase()}:${p.custom.find(c=>c.key===i.dataset.cu).upper?v.toUpperCase():v}`:''}).filter(Boolean);return [opt,...cu].join(' / ')};
+ document.querySelectorAll('[data-cu]').forEach(i=>i.oninput=()=>{const c=p.custom.find(c=>c.key===i.dataset.cu);i.value=i.value.replace(/[^A-Za-z0-9가-힣ㄱ-ㅎㅏ-ㅣ .\-'&]/g,'').slice(0,c.max);const o=cuObj();const t=document.getElementById('cuPrevTxt');if(t)t.textContent=p.custom.map(c=>c.key.toUpperCase()+': '+(o[c.key]||'(기본 문구)')).join(' · ')});
  document.getElementById('addBtn').onclick=()=>{if(cuOk())add(id,fullOpt(),q,cuObj())};
  document.getElementById('buyNow').onclick=()=>{if(!cuOk())return;add(id,fullOpt(),q,cuObj());location.hash='checkout'};
  const sb=document.getElementById('stickyBuy');document.getElementById('sbName').textContent=`${p.name} · ${won(p.price)}`;
@@ -832,7 +832,6 @@ document.getElementById('cartBtn').onclick=()=>{location.hash='cart'};
 addEventListener('hashchange',route);
 save(); payReturn().then(handled=>{ if(!handled) route(); });
 </script>
-
 
 <script src="https://probe2928-crypto.github.io/chainbrief/network.js" data-site="luft" defer></script>
 </body></html>
