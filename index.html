@@ -87,6 +87,7 @@ nav.main a:hover{text-decoration:underline;text-underline-offset:4px}
 .cta:hover .arr{transform:translateX(4px)}
 .intro-tag{position:absolute;left:0;right:0;top:18px}
 .intro-tag .wrap{display:flex;justify-content:space-between;gap:12px}
+@media(max-width:560px){.intro-tag .wrap>span:last-child{display:none}.intro-tag .wrap>span{white-space:nowrap}}
 .scrollhint{display:inline-flex;align-items:center;gap:8px}
 .scrollhint i{width:1px;height:22px;background:var(--ink);display:inline-block;transform-origin:top}
 @media (prefers-reduced-motion:no-preference){.scrollhint i{animation:drip 1.6s ease-in-out infinite}}
