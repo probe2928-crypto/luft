@@ -99,8 +99,12 @@
     document.body.appendChild(nav);
     nav.addEventListener("click", function (e) {
       var a = e.target.closest("a[data-tab]"); if (!a) return;
-      haptic();
-      if (location.hash === "#" + a.dataset.tab) { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }
+      haptic(); e.preventDefault();
+      if (location.hash === "#" + a.dataset.tab) { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+      // 링크 기본 동작(같은 화면의 #shop 으로 바로 스크롤)이 사이트 router의 다시 그리기와 겹치면
+      // 홈에서 '샵'을 눌러도 화면이 맨 위에 멈춰 있어서, 주소만 바꾸고 이동은 router에 맡긴다
+      var tab = a.dataset.tab;
+      setTimeout(function () { location.hash = tab; }, 0);
     });
     sync();
   }
