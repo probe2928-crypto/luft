@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>LUFT Auto Scent Label</title>
+<style>
+/* 10px = 1mm. 둘레 라벨 180×45mm(가안 — 피프스센스 다이라인 받으면 조정), 뚜껑 스티커 Ø50mm */
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;font-family:"Noto Sans CJK KR","Noto Sans CJK JP",sans-serif;color:#1b1b1b}
+.mono{font-family:"DejaVu Sans Mono",monospace;letter-spacing:.18em}
+.wrap{width:1800px;height:450px;position:relative;display:grid;grid-template-columns:800px 420px 580px;overflow:hidden}
+.wrap>div{position:relative;height:100%}
+.cut{outline:2px dashed rgba(200,0,0,.0)}
+/* 공통 */
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:34px;letter-spacing:.02em}
+.logo svg{width:36px;height:30px}
+.seal{width:70px;height:70px;background:#B8322A;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#F6EFE3;font-weight:900;font-size:24px;line-height:1.05;box-shadow:inset 0 0 0 4px #B8322A,inset 0 0 0 6px #F6EFE3}
+.vname{writing-mode:vertical-rl;font-weight:900;font-size:64px;letter-spacing:.06em;line-height:1}
+.notes{font-size:19px;letter-spacing:.24em}
+.back{padding:34px 34px;font-size:14.2px;line-height:1.55}
+.back h4{font-size:15px;margin-bottom:6px;letter-spacing:.06em}
+.back dl{display:grid;grid-template-columns:96px 1fr;column-gap:10px;row-gap:1px}
+.back dt{font-weight:700}
+.back .warn{margin-top:12px;font-size:13px;line-height:1.5}
+.ph{background:rgba(255,255,255,.55);padding:0 4px;border-radius:2px}
+/* 달항아리 */
+.mj{background:#D9DCDA}
+.mj .front .jar{position:absolute;left:200px;top:34px;height:300px}
+.mj .front .vname{position:absolute;right:58px;top:42px;color:#262626}
+.mj .front .meta{position:absolute;left:40px;bottom:30px;color:#4a4a4a}
+.mj .side{border-left:1px solid rgba(0,0,0,.08);border-right:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:22px;text-align:center}
+.big{font-weight:900;font-size:46px;letter-spacing:.04em}
+/* 청자 */
+.cj{background:#9BB8A6}
+.cj .front .crane{position:absolute;left:190px;top:22px;width:330px;height:330px;clip-path:circle(44.2% at 48.6% 50.2%)}
+.cj .front .vname{position:absolute;right:62px;top:42px;color:#173326}
+.cj .front .meta{position:absolute;left:40px;bottom:30px;color:#20402f}
+.cj .side{border-left:1px solid rgba(0,0,0,.1);border-right:1px solid rgba(0,0,0,.1);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:22px;text-align:center;color:#173326}
+.cj .back{color:#132a1f}
+/* 뚜껑 스티커 */
+.lid{width:500px;height:500px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative}
+.lid .no{font-size:18px}
+.lid .nm{font-weight:900;font-size:58px;letter-spacing:.08em}
+.lid .ring{position:absolute;inset:18px;border-radius:50%;border:2px solid currentColor;opacity:.35}
+.lid.mj{color:#262626}.lid.cj{color:#173326}
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="sun" viewBox="0 0 36 30"><path d="M5 15a13 13 0 0 1 26 0" fill="none" stroke="currentColor" stroke-width="3.4"/><path d="M1 17h34M9 22h18M14 27h8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></symbol>
+</defs></svg>
+
+<!-- ===== NO.01 달항아리 ===== -->
+<section id="wrap-moonjar" class="wrap mj">
+ <div class="front">
+  <img class="jar" src="jar.png" alt="">
+  <div class="vname">달항아리</div>
+  <div class="meta mono"><div style="font-size:17px">JOSEON WHITE PORCELAIN</div><div style="font-size:14px;margin-top:6px;opacity:.75">SEOUL COLLECTION · NO.01 · AUTO SCENT</div></div>
+ </div>
+ <div class="side">
+  <div class="logo"><svg><use href="#sun"/></svg>LUFT</div>
+  <div class="notes mono">RICE<br>WHITE MUSK<br>WHITE TEA</div>
+  <div class="big">100<span style="font-size:22px">g</span></div>
+  <div class="seal">서<br>울</div>
+ </div>
+ <div class="back">
+  <h4>차량용 방향제 · 달항아리</h4>
+  <dl>
+   <dt>품목</dt><dd>방향제 (안전확인대상생활화학제품)</dd>
+   <dt>신고번호</dt><dd><span class="ph">제 ○○○○-○○○○○○-○○○○○ 호</span></dd>
+   <dt>내용량</dt><dd>100g (고체 겔)</dd>
+   <dt>주요 물질</dt><dd><span class="ph">제조사 제공 문안 기재</span></dd>
+   <dt>제조연월</dt><dd><span class="ph">20○○.○○</span> · 사용기간 개봉 후 약 4~6주</dd>
+   <dt>제조자</dt><dd>피프스센스 · 경기도 안양시 동안구 엘에스로 142</dd>
+   <dt>위탁·판매자</dt><dd>루프트(LUFT) · 인천광역시 영종구 은하수로 306 · 010-5529-5086</dd>
+  </dl>
+  <p class="warn"><b>사용상 주의사항</b> 어린이·애완동물의 손이 닿지 않는 곳에 보관하세요. 먹거나 마시지 마세요. 눈·피부에 닿으면 물로 씻고 이상이 있으면 의사와 상담하세요. 운전 시야를 가리는 곳에 두지 마세요. <span class="ph">제조사 제공 문안으로 최종 교체</span></p>
+ </div>
+</section>
+
+<div style="height:40px"></div>
+
+<!-- ===== NO.02 청자 ===== -->
+<section id="wrap-celadon" class="wrap cj">
+ <div class="front">
+  <img class="crane" src="crane.png" alt="">
+  <div class="vname">청자</div>
+  <div class="meta mono"><div style="font-size:17px">GORYEO CELADON · CRANE</div><div style="font-size:14px;margin-top:6px;opacity:.75">SEOUL COLLECTION · NO.02 · AUTO SCENT</div></div>
+ </div>
+ <div class="side">
+  <div class="logo"><svg><use href="#sun"/></svg>LUFT</div>
+  <div class="notes mono">GREEN TEA<br>GREEN TANGERINE<br>BERGAMOT</div>
+  <div class="big">100<span style="font-size:22px">g</span></div>
+  <div class="seal">서<br>울</div>
+ </div>
+ <div class="back">
+  <h4>차량용 방향제 · 청자</h4>
+  <dl>
+   <dt>품목</dt><dd>방향제 (안전확인대상생활화학제품)</dd>
+   <dt>신고번호</dt><dd><span class="ph">제 ○○○○-○○○○○○-○○○○○ 호</span></dd>
+   <dt>내용량</dt><dd>100g (고체 겔)</dd>
+   <dt>주요 물질</dt><dd><span class="ph">제조사 제공 문안 기재</span></dd>
+   <dt>제조연월</dt><dd><span class="ph">20○○.○○</span> · 사용기간 개봉 후 약 4~6주</dd>
+   <dt>제조자</dt><dd>피프스센스 · 경기도 안양시 동안구 엘에스로 142</dd>
+   <dt>위탁·판매자</dt><dd>루프트(LUFT) · 인천광역시 영종구 은하수로 306 · 010-5529-5086</dd>
+  </dl>
+  <p class="warn"><b>사용상 주의사항</b> 어린이·애완동물의 손이 닿지 않는 곳에 보관하세요. 먹거나 마시지 마세요. 눈·피부에 닿으면 물로 씻고 이상이 있으면 의사와 상담하세요. 운전 시야를 가리는 곳에 두지 마세요. <span class="ph">제조사 제공 문안으로 최종 교체</span></p>
+ </div>
+</section>
+
+<div style="height:40px"></div>
+<div style="display:flex;gap:60px">
+ <div id="lid-moonjar" class="lid mj" style="background:#D9DCDA"><div class="ring"></div><div class="logo"><svg><use href="#sun"/></svg>LUFT</div><div class="nm">달항아리</div><div class="no mono">SEOUL · NO.01</div></div>
+ <div id="lid-celadon" class="lid cj" style="background:#9BB8A6"><div class="ring"></div><div class="logo"><svg><use href="#sun"/></svg>LUFT</div><div class="nm">청자</div><div class="no mono">SEOUL · NO.02</div></div>
+</div>
+<div style="height:40px"></div>
+<section id="mock" style="width:1600px;height:1000px;background:#F1C7A6;position:relative;display:flex;align-items:flex-end;justify-content:center;gap:120px;padding-bottom:150px;font-family:inherit">
+ <div style="position:absolute;left:70px;top:60px;font-weight:900;font-size:120px;letter-spacing:-.02em;color:#141210">LUFT</div>
+ <div class="mono" style="position:absolute;left:80px;top:228px;font-size:20px;color:#141210">AUTO SCENT · SEOUL COLLECTION</div>
+ <div class="mono" style="position:absolute;right:70px;top:80px;font-size:16px;line-height:1.9;text-align:right;color:#141210">SOLID GEL 100g<br>CUP-HOLDER FIT<br>4–6 WEEKS<br>HEAT-SAFE 70°C</div>
+ <div class="can" data-k="moonjar"></div><div class="can" data-k="celadon"></div>
+ <div style="position:absolute;bottom:60px;left:0;right:0;text-align:center;font-size:22px;color:#141210;letter-spacing:.04em">달항아리 · 청자 — 컵홀더에 두기만</div>
+</section>
+<style>
+.can{width:400px;height:360px;position:relative;filter:drop-shadow(0 30px 30px rgba(0,0,0,.25))}
+.can .lidc{position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(90deg,#0c0c0c,#3a3a3a 35%,#111 70%,#050505);border-radius:10px 10px 4px 4px}
+.can .body{position:absolute;top:56px;left:6px;right:6px;bottom:0;background:linear-gradient(90deg,#0a0a0a,#2b2b2b 35%,#0d0d0d 75%,#000);border-radius:0 0 22px 22px/0 0 14px 14px;overflow:hidden}
+.can .lab{position:absolute;left:0;right:0;top:44px;height:212px;overflow:hidden}
+.can .lab img{height:212px;position:absolute;left:5px}
+.can .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(255,255,255,.12) 32%,rgba(0,0,0,0) 50%,rgba(0,0,0,.45) 85%,rgba(0,0,0,.7))}
+</style>
+<script>
+document.querySelectorAll('.can').forEach(c=>{c.innerHTML='<div class="lidc"></div><div class="body"><div class="lab"><img src="wrap-'+c.dataset.k+'.png"></div><div class="shade"></div></div>'});
+</script>
+</body></html>
