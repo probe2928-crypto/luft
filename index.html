@@ -367,6 +367,7 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
     <a href="#shop" class="hide-s">Shop</a>
     <a href="#sets" class="hide-s">Set</a>
     <a href="#help">고객센터</a>
+    <span class="auth-slot" data-auth-slot hidden></span>
     <button class="cartbtn mono" id="cartBtn" type="button">Cart (<span id="cartCount">0</span>)</button>
   </nav>
 </div></header>
@@ -1010,4 +1011,5 @@ addEventListener('hashchange',route);
 save(); payReturn().then(handled=>{ if(!handled) route(); });
 </script>
 <script src="https://probe2928-crypto.github.io/chainbrief/network.js" data-site="luft" defer></script>
+<script src="auth-config.js" defer></script>
 </body></html>
