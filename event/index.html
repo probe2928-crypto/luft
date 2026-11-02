@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko" data-event-page data-event-hide>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>웰컴 쿠폰 · LUFT Store</title>
+<meta name="description" content="LUFT 회원가입 혜택: 첫 주문 2,000원 할인 쿠폰 조건 안내">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --peach:#F1C7A6; --ink:#141210; --ink-2:#4A433D; --paper:#FBF6F1; --line:rgba(20,18,16,.16);
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+::selection{background:var(--ink);color:var(--peach)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+[data-event-hide] [data-event-main]{visibility:hidden}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left,0px))}
+.mono{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+.top{border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.logo{font-family:var(--f-display);font-weight:900;font-stretch:66%;font-size:32px;letter-spacing:-.01em;text-decoration:none;line-height:1}
+.stage{background:var(--peach);position:relative;overflow:hidden}
+.stage .wrap{position:relative;min-height:min(78vh,640px);display:grid;place-items:center;padding-block:72px}
+.big{font-family:var(--f-display);font-weight:900;font-stretch:62%;font-size:clamp(150px,30vw,420px);line-height:.8;letter-spacing:-.02em;margin:0;text-align:center;font-variant-numeric:lining-nums}
+.big span{display:block;margin-top:2.4em;font-size:.1em;font-stretch:78%;font-weight:800;letter-spacing:0;line-height:1.2}
+.lab{position:absolute;max-width:13em}
+.lab b{display:block;font-family:var(--f-display);font-weight:800;font-stretch:78%;font-size:clamp(20px,2.2vw,28px);line-height:1;text-transform:none;letter-spacing:-.01em;margin-top:6px}
+.l1{left:max(20px,4vw);top:56px}.l2{right:max(20px,4vw);top:56px;text-align:right}.l3{left:max(20px,4vw);bottom:48px}.l4{right:max(20px,4vw);bottom:48px;text-align:right}
+@media (max-width:720px){.stage .wrap{display:grid;grid-template-columns:1fr 1fr;place-items:stretch;gap:0 16px;min-height:0;padding-block:28px 24px}.big{grid-column:1/-1;margin:20px 0 24px}.lab{position:static;max-width:none;text-align:left!important;padding:12px 0;border-top:1px solid var(--line)}}
+.body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;padding-block:64px 80px;align-items:start}
+@media (max-width:860px){.body{grid-template-columns:1fr;gap:36px;padding-block:40px 56px}.body>[data-event-entry]{order:-1}}
+h1{font-family:var(--f-display);font-weight:800;font-stretch:78%;font-size:clamp(34px,4.6vw,56px);line-height:1;letter-spacing:-.01em;margin:0 0 20px;text-wrap:balance}
+.terms{margin:0;padding:0;list-style:none;border-top:1px solid var(--ink)}
+.terms li{display:grid;grid-template-columns:8em 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);line-height:1.6}
+.terms li span:first-child{color:var(--ink-2)}
+.fine{color:var(--ink-2);font-size:13px;margin-top:24px;max-width:60ch}
+.back{display:inline-block;margin-top:28px;text-decoration:underline;text-underline-offset:4px}
+</style>
+<script src="event-config.js" defer></script>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="../#home">LUFT</a><a class="mono" href="../#shop" style="text-decoration:none">Shop</a></div></header>
+<main data-event-main>
+  <section class="stage" aria-label="웰컴 쿠폰">
+    <div class="wrap">
+      <div class="lab l1 mono">For<b>새 회원</b></div>
+      <div class="lab l2 mono">Min. order<b>14,900원 이상</b></div>
+      <p class="big">2,000<span>WON · WELCOME COUPON</span></p>
+      <div class="lab l3 mono">Valid<b>가입 후 30일</b></div>
+      <div class="lab l4 mono">Limit<b>1인 1회</b></div>
+    </div>
+  </section>
+  <div class="wrap body">
+    <div>
+      <h1>가입하면 첫 주문 2,000원 할인</h1>
+      <ul class="terms">
+        <li><span>대상</span><span>LUFT 회원으로 처음 가입한 분 (1인 1계정 1회)</span></li>
+        <li><span>할인</span><span>주문 금액에서 2,000원</span></li>
+        <li><span>조건</span><span>상품 금액 합계 14,900원 이상 첫 주문 (배송비 제외)</span></li>
+        <li><span>기간</span><span>쿠폰을 받은 날부터 30일</span></li>
+        <li><span>함께 쓰기</span><span>다른 쿠폰·할인 코드와 함께 쓸 수 없어요</span></li>
+        <li><span>취소·환불</span><span>주문을 취소하면 기간 안에서 쿠폰을 돌려드려요. 부분 환불로 조건 금액 아래가 되면 할인액만큼 빼고 환불해요</span></li>
+      </ul>
+      <p class="fine">쿠폰은 현금으로 바꿀 수 없고 다른 계정으로 넘길 수 없어요. 같은 사람이 여러 계정을 만들어 받은 쿠폰은 취소될 수 있어요. 할인 금액은 결제할 때 서버에서 확인해 적용돼요. 문의는 <a href="../#help">고객센터</a>로 보내 주세요.</p>
+      <a class="back" href="../#shop">상품 보러 가기</a>
+    </div>
+    <div data-event-entry></div>
+  </div>
+</main>
+</body>
+</html>
