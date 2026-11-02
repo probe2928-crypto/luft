@@ -336,6 +336,28 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
 .svc li span.t{color:var(--ink-2)}
 .optsel{color:var(--ink-2);text-transform:none;letter-spacing:0;font-family:var(--f-body);font-size:13px;margin-left:6px}
 .steps-note{margin:14px 0 0;color:var(--ink-2);font-size:14px;max-width:62ch}
+/* ---------- v9 visual: 3D 렌더 갤러리 · 컬렉션 밴드 · 방향제 출시 예정 ---------- */
+.gal{padding:28px 0 8px;position:relative;background:var(--paper)}
+.gal-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;scrollbar-width:thin}
+.gal-row figure{margin:0;scroll-snap-align:start}
+.gal-row img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;background:var(--stage)}
+.gal-row figcaption{font-size:11px;margin-top:8px;color:var(--ink-2)}
+@media (max-width:760px){.gal-row{grid-auto-columns:78%}}
+.band{padding:72px 0 0}
+.band .bimg{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:22px}
+.band .bhead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:0 0 18px;flex-wrap:wrap}
+.band h2{font-family:var(--f-display);font-weight:900;font-stretch:66%;font-size:clamp(40px,6vw,84px);line-height:.9;letter-spacing:-.01em}
+.soon{background:#F2CBAA;padding:72px 0;margin-top:56px}
+.soon .sg{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.soon video{width:100%;aspect-ratio:1;border-radius:22px;display:block;background:#F2CBAA;object-fit:cover}
+.soon .tag{display:inline-block;border:1.5px solid var(--ink);border-radius:99px;padding:4px 12px;font-size:12px}
+.soon h2{font-family:var(--f-display);font-weight:900;font-stretch:66%;font-size:clamp(48px,7vw,104px);line-height:.88;margin:14px 0 16px}
+.soon .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+.soon .tri figure{margin:0}
+.soon .tri img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;display:block}
+.soon .tri figcaption{font-size:13px;margin-top:6px}
+.soon .tri figcaption b{display:block;font-size:15px}
+@media (max-width:860px){.soon .sg{grid-template-columns:1fr}}
 </style>
 
 <div class="marq mono" aria-label="공지"><div class="track"><span><b>NEW · SEOUL COLLECTION 한국 유산 모티프 케이스 7종 14,900원</b><b>내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>비행기 타는 날엔 공항 세트 46,900원</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>해외 상품 7~14 영업일 · 국내 제작 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span><span aria-hidden="true"><b>NEW · SEOUL COLLECTION 한국 유산 모티프 케이스 7종 14,900원</b><b>내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>비행기 타는 날엔 공항 세트 46,900원</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>해외 상품 7~14 영업일 · 국내 제작 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span></div></div>
@@ -393,6 +415,18 @@ const listSum=s=>s.items.reduce((a,i)=>a+P[i].price,0);
 const won = n => n.toLocaleString('ko-KR')+'원';
 const pimg=(id,cls='')=>`<img class="pimg ${cls}" src="${P[id].img}" alt="${P[id].ko}" loading="lazy" decoding="async">`;
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const V2=new Set(['case-ilwol','case-moonjar','case-celadon','case-najeon','case-peony','case-bojagi','case-dancheong']);
+const gallery=id=>{if(!V2.has(id))return '';const k=id.slice(5);return `<section class="gal"><div class="wrap"><div class="gal-row">${[['main','LUFT '+P[id].name],['hand','손에 든 느낌'],['flat','테이블 위'],['edge','무광 소재 · 카메라 테두리'],['front','뒷면 정면']].map(([t,l])=>`<figure><img src="img/v2/${k}-${t}.jpg" alt="${esc(P[id].ko)} · ${l}" loading="lazy" decoding="async"><figcaption class="mono">${l}</figcaption></figure>`).join('')}</div><p class="note-img" style="margin-top:6px">3D 렌더·합성 이미지예요. 실물 사진으로 곧 바꿔요. 화면에 따라 실제 색과 조금 다를 수 있어요.</p></div></section>`};
+const soonHTML=()=>`<section class="soon" id="auto-scent"><div class="wrap sg">
+  <video src="video/auto-scent-teaser-1x1.mp4" poster="img/v2/scent-lineup.jpg" autoplay muted loop playsinline preload="metadata" aria-label="LUFT AUTO SCENT 티저 영상"></video>
+  <div><span class="tag mono">COMING SOON · 출시 예정</span>
+   <h2>AUTO<br>SCENT</h2>
+   <p style="max-width:44ch;color:var(--ink-2)">서울 컬렉션을 차 안으로. 컵홀더에 두는 고체 방향제 100g, 세 가지 향을 준비하고 있어요. 판매 준비가 끝나면 이곳과 인스타그램에서 먼저 알려 드려요.</p>
+   <div class="tri">${[['moonjar','달항아리 · 白','화이트티 · 코튼'],['celadon','청자 · 翡色','청귤 · 유자 · 녹차'],['pyeonbaek','편백 · 歲寒','편백 · 소나무 · 시더']].map(([k,a,b])=>`<figure><img src="img/v2/scent-cupholder-${k}.jpg" alt="${a} 컵홀더 장착 이미지" loading="lazy" decoding="async"><figcaption><b>${a}</b>${b}</figcaption></figure>`).join('')}</div>
+   <p class="note-img" style="margin-top:12px">3D 렌더·합성 이미지 · 디자인과 향 구성은 바뀔 수 있어요.</p>
+  </div></div></section>`;
+const bandHTML=()=>`<section class="band"><div class="wrap"><div class="bhead reveal"><h2>SEOUL<br>COLLECTION</h2><p class="mono" style="color:var(--ink-2)">07 DESIGNS · 이름 낙관 · 국내 주문 제작</p></div>
+  <a href="#p-case-ilwol" aria-label="서울 컬렉션 케이스 보기"><img class="bimg reveal" src="img/v2/seoul-lineup.jpg" alt="서울 컬렉션 케이스 7종 라인업" loading="lazy" decoding="async"></a></div></section>`;
 
 /* ---------- cart ---------- */
 let cart=[];
@@ -489,6 +523,8 @@ function home(anchor){
  app.innerHTML=`
  ${storyHTML(NEWC,`New · ${COLL[NEWC].name} · ${pad2(COLL[NEWC].ids.length)} items`)}
  <div class="trust"><div class="wrap"><div class="t"><b>전 상품 무료배송</b><span>금액 조건 없음 · 송장 문자 안내</span></div><div class="t"><b>해외 7–14 · 국내 2–4</b><span>해외 상품 / 국내 제작 케이스 (영업일)</span></div><div class="t"><b>한국어 고객센터</b><span>평일 10–18시, 하루 안에 답변</span></div><div class="t"><b>안전결제</b><span>토스페이먼츠 · 2개 이상 10% 할인</span></div></div></div>
+ ${bandHTML()}
+ ${soonHTML()}
 
  <section id="shop"><div class="wrap">
   <div class="sec-head reveal"><h2>가볍게 떠나는<br>물건 ${ORDER.length}가지</h2>
@@ -561,6 +597,7 @@ function product(id){
    ${labCol(p.specs.slice(2),'r')}
   </div>
  </div>
+ ${gallery(id)}
  <div class="wrap pd-body">
   <div>
    <p class="mono">LUFT ${p.name} ${p.c===NEWC?'<span class="badge">NEW</span>':''}</p>
@@ -572,7 +609,7 @@ function product(id){
     ${p.ship==='kr'?`<details><summary>배송은 얼마나 걸리나요?</summary><p>국내 제작소에서 주문 다음 영업일까지 만들어 바로 택배로 보내요. 보통 결제 후 2~4 영업일이면 받아요. 송장번호는 문자로 보내드려요. <a href="#help/track">배송 조회</a></p></details>`:`<details><summary>배송은 얼마나 걸리나요?</summary><p>해외 판매자가 직접 발송하며 보통 7~14 영업일 걸려요. 통관 상황에 따라 늦어질 수 있어요. <a href="#help/track">배송 조회</a></p></details>
     <details><summary>교환·반품은 어떻게 하나요?</summary><p>수령 후 7일 이내 고객센터에서 접수해 주세요. 불량·오배송은 사진 확인 후 재발송 또는 전액 환불해요. <a href="#help/return">접수하기</a></p></details>`}
    </div>
-   <p class="note-img" style="margin-top:14px">상품 이미지는 판매자 제공 이미지예요. 실물 촬영본으로 교체할 예정이에요.</p>
+   <p class="note-img" style="margin-top:14px">${V2.has(id)?'상품 이미지는 3D 렌더·합성 이미지예요. 실물 촬영본으로 교체할 예정이에요.':'상품 이미지는 판매자 제공 이미지예요. 실물 촬영본으로 교체할 예정이에요.'}</p>
   </div>
   <aside class="pd-buy">
    <div><div class="mono" style="color:var(--ink-2)">${p.ko}</div><div style="font-family:var(--f-display);font-weight:800;font-stretch:78%;font-size:46px;line-height:1.05;font-variant-numeric:tabular-nums">${won(p.price)}</div><div style="color:var(--ink-2);font-size:13.5px">${p.ship==='kr'?'무료배송 · 국내 주문 제작 · 결제 후 보통 2~4 영업일 도착':'무료 해외배송 · 2개 이상 10% 할인'}</div></div>

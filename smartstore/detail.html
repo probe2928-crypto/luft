@@ -15,7 +15,7 @@ p.lead{font-size:20px;line-height:1.75;color:#3b3632;margin-top:18px}
 .hero{background:#F1C7A6;height:1180px}
 .hero .wm{position:absolute;left:50px;top:52px;font-weight:900;font-size:150px;letter-spacing:-.03em;line-height:1}
 .hero .sub{position:absolute;left:56px;top:212px;font-size:17px}
-.hero .main{position:absolute;left:50%;top:300px;transform:translateX(-50%);width:430px}
+.hero .main{position:absolute;left:50%;top:268px;transform:translateX(-50%);width:400px}
 .hero .lab{position:absolute;font-size:14px;line-height:1.6}
 .hero .lab b{display:block;font-family:"Noto Sans CJK KR";letter-spacing:0;font-size:17px}
 .hero .t{position:absolute;left:0;right:0;bottom:56px;text-align:center}
@@ -28,7 +28,7 @@ p.lead{font-size:20px;line-height:1.75;color:#3b3632;margin-top:18px}
 .grid{padding:100px 50px;background:#fff}
 .grid .g{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 18px;margin-top:50px}
 .grid .it{background:#F4F1EC;border-radius:14px;padding:18px 10px 22px;text-align:center}
-.grid .it img{width:200px;margin:0 auto}
+.grid .it img{width:170px;margin:4px auto 6px;display:block}
 .grid .it b{display:block;font-size:21px;margin-top:6px}
 .grid .it span{display:block;font-size:14px;color:#6e655d;margin-top:4px;line-height:1.5}
 .grid .it.wide{grid-column:span 3;display:flex;align-items:center;gap:30px;text-align:left;padding:20px 40px}
@@ -55,18 +55,34 @@ p.lead{font-size:20px;line-height:1.75;color:#3b3632;margin-top:18px}
 .nt li{font-size:16.5px;line-height:1.8;color:#3b3632;margin-bottom:8px}
 .nt .box{margin-top:30px;border:2px solid #B8322A;border-radius:12px;padding:22px 26px;font-size:16.5px;line-height:1.75;color:#3b3632}
 .foot{background:#F1C7A6;padding:70px;text-align:center}
+/* v2 photo sections */
+.ph1{position:relative;background:#F2CBAA}
+.ph1 img{display:block;width:860px;height:860px;object-fit:cover}
+.ph1 .cap{position:absolute;left:50px;bottom:46px;color:#141210}
+.ph1 .cap b{display:block;font-size:34px;font-weight:900;margin-top:8px}
+.line{background:#EFE6D6;padding:90px 0 70px;text-align:center}
+.line img{display:block;width:860px;margin-top:30px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:40px}
+.two img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;display:block}
+.two p{font-size:15px;color:#5b524b;margin-top:10px;line-height:1.6}
+.rnote{font-size:13px;color:#8a7f75;margin-top:16px}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs><symbol id="sun" viewBox="0 0 36 30"><path d="M5 15a13 13 0 0 1 26 0" fill="none" stroke="currentColor" stroke-width="3.4"/><path d="M1 17h34M9 22h18M14 27h8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></symbol></defs></svg>
 
 <section class="hero">
  <div class="wm">LUFT</div>
  <div class="sub mono">SEOUL COLLECTION · PHONE CASE</div>
- <img class="cs main" src="case-ilwol.png" alt="">
+ <img class="cs main" src="v2/hero-ilwol.png" alt="">
  <div class="lab mono" style="left:56px;top:470px">TYPE<b>슬림 하드</b></div>
  <div class="lab mono" style="left:56px;top:640px">SEAL<b>내 이름 낙관</b></div>
  <div class="lab mono" style="right:56px;top:470px;text-align:right">MADE<b>국내 주문 제작</b></div>
  <div class="lab mono" style="right:56px;top:640px;text-align:right">SHIP<b>2~4일 도착</b></div>
  <div class="t"><h1>서울 컬렉션 케이스</h1><p>박물관 굿즈처럼, 내 이름 낙관을 찍은 단 하나</p></div>
+</section>
+
+<section class="ph1">
+ <img src="../img/v2/ilwol-hand.jpg" alt="">
+ <div class="cap"><span class="mono" style="font-size:14px">IN HAND · ILWOL</span><b>손에 쥐는 한 점의 그림</b></div>
 </section>
 
 <section class="intro">
@@ -79,18 +95,34 @@ p.lead{font-size:20px;line-height:1.75;color:#3b3632;margin-top:18px}
  </div>
 </section>
 
+<section class="line">
+ <p class="k mono">SEOUL COLLECTION · 07</p>
+ <h2 style="margin-top:14px">일곱 가지, 나란히</h2>
+ <img src="../img/v2/seoul-lineup.jpg" alt="">
+</section>
+
 <section class="grid">
  <p class="k mono">02 · 7 DESIGNS</p>
  <h2 style="margin-top:14px">일곱 가지 무늬</h2>
  <div class="g">
-  <div class="it"><img class="cs" src="case-ilwol.png" alt=""><b>일월오봉</b><span>해와 달, 다섯 봉우리<br>왕의 자리 뒤 병풍</span></div>
-  <div class="it"><img class="cs" src="case-moonjar.png" alt=""><b>달항아리</b><span>조선 백자의 둥근 여백<br>가장 담백한 한 점</span></div>
-  <div class="it"><img class="cs" src="case-celadon.png" alt=""><b>청자</b><span>고려 상감청자의 학<br>비색 바탕 위 구름과 학</span></div>
-  <div class="it"><img class="cs" src="case-najeon.png" alt=""><b>나전</b><span>자개를 박은 옻칠 공예<br>검은 바탕 위 빛</span></div>
-  <div class="it"><img class="cs" src="case-peony.png" alt=""><b>민화 모란</b><span>부귀를 비는 꽃<br>선물하기 좋은 무늬</span></div>
-  <div class="it"><img class="cs" src="case-bojagi.png" alt=""><b>조각보</b><span>남은 천을 이어 붙인<br>색의 조합</span></div>
-  <div class="it wide"><img class="cs" src="case-dancheong.png" alt="" style="width:170px;margin:0"><div><b style="font-size:24px">단청</b><span style="font-size:16px;margin-top:8px">궁궐 처마 끝의 오방색 무늬. 일곱 가지 중 가장 화려한 케이스예요.</span></div></div>
+  <div class="it"><img class="cs" src="v2/front-ilwol.png" alt=""><b>일월오봉</b><span>해와 달, 다섯 봉우리<br>왕의 자리 뒤 병풍</span></div>
+  <div class="it"><img class="cs" src="v2/front-moonjar.png" alt=""><b>달항아리</b><span>조선 백자의 둥근 여백<br>가장 담백한 한 점</span></div>
+  <div class="it"><img class="cs" src="v2/front-celadon.png" alt=""><b>청자</b><span>고려 상감청자의 학<br>비색 바탕 위 구름과 학</span></div>
+  <div class="it"><img class="cs" src="v2/front-najeon.png" alt=""><b>나전</b><span>자개를 박은 옻칠 공예<br>검은 바탕 위 빛</span></div>
+  <div class="it"><img class="cs" src="v2/front-peony.png" alt=""><b>민화 모란</b><span>부귀를 비는 꽃<br>선물하기 좋은 무늬</span></div>
+  <div class="it"><img class="cs" src="v2/front-bojagi.png" alt=""><b>조각보</b><span>남은 천을 이어 붙인<br>색의 조합</span></div>
+  <div class="it wide"><img class="cs" src="v2/front-dancheong.png" alt="" style="width:170px;margin:0"><div><b style="font-size:24px">단청</b><span style="font-size:16px;margin-top:8px">궁궐 처마 끝의 오방색 무늬. 일곱 가지 중 가장 화려한 케이스예요.</span></div></div>
  </div>
+</section>
+
+<section class="intro" style="background:#fff;padding-top:90px">
+ <p class="k mono">MATERIAL · DETAIL</p>
+ <h2 style="margin-top:14px">무광 슬림 하드,<br>차분한 결</h2>
+ <div class="two">
+  <div><img src="../img/v2/ilwol-edge.jpg" alt=""><p>바탕까지 풀컬러로 인쇄한 무광 표면.<br>카메라 둘레까지 무늬가 이어져요.</p></div>
+  <div><img src="../img/v2/peony-flat.jpg" alt=""><p>책상 위에 두어도 소품처럼.<br>군더더기 없는 슬림 하드 케이스.</p></div>
+ </div>
+ <p class="rnote">* 상세 이미지는 3D 렌더·합성 이미지예요. 모니터와 실제 색상은 조금 다를 수 있어요.</p>
 </section>
 
 <section class="sl">
