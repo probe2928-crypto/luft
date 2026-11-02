@@ -35,6 +35,8 @@ swap('<script src="catalog.js"></script>',
   '<link rel="stylesheet" href="app-shell.css"><script src="app-shell.js"></script>');
 swap('<script src="config.js"></script>', '<script src="config.js"></script><script src="app-config.js"></script>');
 html = html.replace(/<script src="https:\/\/probe2928-crypto\.github\.io\/chainbrief\/network\.js"[^>]*><\/script>\s*/, "");
+html = html.replace(/<script src="https:\/\/probe2928-crypto\.github\.io\/chainbrief\/app-install\.js"[^>]*><\/script>\s*/, "");   // 웹 전용 앱 설치 유도는 앱에서 뺌
+html = html.replace(/<meta name="apple-itunes-app"[^>]*>/, "");
 html = html.replace("<title>LUFT Store</title>", "<title>LUFT</title>");
 html = html.replace('<meta name="claude:viewport-fit-sides" content="cover">', "");
 fs.writeFileSync(path.join(OUT, "index.html"), html);
