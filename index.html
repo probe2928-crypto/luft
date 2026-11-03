@@ -396,6 +396,7 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="config.js"></script>
+<script src="event/event-config.js" defer></script>
 <script>
 /* 실결제 설정: config.js 의 window.LUFT_CONFIG = { apiBase, tossClientKey } 가 채워지면 토스 결제위젯·주문조회·문의 접수가 켜진다. 비어 있으면 미리보기 모드. */
 const CFG = window.LUFT_CONFIG || {};
