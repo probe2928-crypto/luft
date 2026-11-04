@@ -22,3 +22,7 @@
 .luft-app .sticky-buy{bottom:calc(58px + env(safe-area-inset-bottom,0px));padding-bottom:0}
 .luft-app .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
 .luft-app .app-note{bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+/* 상품 넘김 점(10px)이 손가락으로 누르기 어려워 눌리는 영역만 26px로 넓힘 (보이는 크기는 그대로) */
+.luft-app .dots{gap:14px}
+.luft-app .dots button{position:relative}
+.luft-app .dots button::after{content:"";position:absolute;inset:-8px}
