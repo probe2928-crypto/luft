@@ -17,9 +17,9 @@ fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 for (const f of ["catalog.js", "config.js"]) fs.copyFileSync(path.join(SITE, f), path.join(OUT, f));
 fs.cpSync(path.join(SITE, "img"), path.join(OUT, "img"), { recursive: true });
-// AUTO SCENT 소개 영상(세로 16초)만 앱에 넣음
+// AUTO SCENT 브랜드 필름(20초, 세로·가로)을 앱에 넣음
 fs.mkdirSync(path.join(OUT, "video"), { recursive: true });
-fs.copyFileSync(path.join(SITE, "video", "luft-scent-teaser.mp4"), path.join(OUT, "video", "luft-scent-teaser.mp4"));
+for (const f of ["luft-film-v.mp4", "luft-film-h.mp4"]) fs.copyFileSync(path.join(SITE, "video", f), path.join(OUT, "video", f));
 for (const f of fs.readdirSync(path.join(APP, "shell"))) fs.copyFileSync(path.join(APP, "shell", f), path.join(OUT, f));
 
 // 앱에 들어간 이미지 목록 — 사이트에만 있는 새 상품 이미지는 온라인 주소로 불러온다

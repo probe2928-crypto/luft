@@ -378,6 +378,13 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
 @media(max-width:520px){.trust .t b{font-size:17px;word-break:keep-all;line-height:1.3}.trust .t span{word-break:keep-all}}
 .eomi{display:inline-block;width:30px;height:16px;background:currentColor;clip-path:polygon(0 0,100% 0,100% 40%,70% 100%,50% 62%,30% 100%,0 40%)}
 /* hero */
+.lx-film{position:relative;background:#0E0D0B;overflow:hidden;height:min(100svh,56.25vw);min-height:420px}
+@media(max-aspect-ratio:1/1){.lx-film{height:min(100svh,177.78vw)}}
+.lx-film video,.lx-film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.lx-film .fo{position:absolute;left:0;right:0;bottom:0;padding:22px 16px 26px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;background:linear-gradient(transparent,rgba(0,0,0,.38))}
+.lx-film .fo .cta{box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.lx-film .fo .ghostbtn{background:rgba(251,246,241,.92)}
+.lx-film .mute{position:absolute;right:14px;top:14px;font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;color:#EFE7D6;background:rgba(0,0,0,.35);border:1px solid rgba(239,231,214,.4);border-radius:999px;padding:7px 12px;cursor:pointer}
 .lx-hero{position:relative;overflow:hidden;background:var(--hb,#EFD9C2);transition:background .9s ease;padding:28px 0 36px}
 .lx-hero .wm{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-family:var(--f-display);font-weight:900;font-stretch:72%;font-size:clamp(150px,34vw,460px);line-height:.8;letter-spacing:-.02em;color:rgba(20,18,16,.92);white-space:nowrap;pointer-events:none;user-select:none}
 .lx-hero .stagebox{position:relative;max-width:1200px;margin:0 auto;min-height:clamp(440px,64vw,640px)}
@@ -641,6 +648,7 @@ function setCard(s){const ls=listSum(s);return `<article class="setcard reveal">
 function home(anchor){
  setStage(P[COLL[NEWC].ids[0]].stage);
  app.innerHTML=`
+ ${filmHTML()}
  ${heroHTML()}
  <div class="trust"><div class="wrap"><div class="t"><b>전 상품 무료배송</b><span>금액 조건 없음 · 송장 문자 안내</span></div><div class="t"><b>국내 제작 2–4일</b><span>케이스는 주문마다 한 개씩 (영업일)</span></div><div class="t"><b>한국어 고객센터</b><span>평일 10–18시, 하루 안에 답변</span></div><div class="t"><b>안전결제</b><span>토스페이먼츠 · 2개 이상 10% 할인</span></div></div></div>
  ${scentHTML()}
@@ -1113,6 +1121,9 @@ const SCENTS=[
  {k:'tea',ko:'달항아리',han:'白',hanR:'백',en:'MOON JAR · KOREAN TEA',no:'03',note:'한국 차 · 따뜻한 김 · 포근함',line:'넉넉하게 둥근 백자 달항아리, 그 곁에 놓인 따뜻한 차 한 잔의 향.',bg:'#EEE9DF',ink:'#2A2722',ln:'rgba(42,39,34,.5)',hb:'#EDE2D6'}];
 const NOTIFY_URL='https://formsubmit.co/ajax/probe2928@gmail.com';
 const sealH=(t,sz=36)=>`<span class="seal" style="width:${sz}px;height:${sz}px;font-size:${t.length>1?sz*.36:sz*.56}px">${[...t].map(c=>`<span class="sl">${c}</span>`).join("")}</span>`;
+function filmHTML(){const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,v=matchMedia('(max-aspect-ratio: 1/1)').matches,o=v?'v':'h';
+ return `<section class="lx-film" aria-label="LUFT AUTO SCENT 브랜드 필름">${rm?`<img src="img/scent/film-poster-${o}.jpg" alt="LUFT AUTO SCENT 브랜드 필름 장면 — 편백 歲寒">`:`<video id="lxFilm" src="video/luft-film-${o}.mp4" poster="img/scent/film-poster-${o}.jpg" autoplay muted loop playsinline preload="metadata" aria-label="LUFT AUTO SCENT 20초 브랜드 필름"></video>`}
+ <div class="fo"><a class="cta" href="#scent">출시 알림 받기 <span class="arr">→</span></a><a class="cta ghostbtn" href="#story">만든 이야기</a></div></section>`}
 function heroHTML(){const s=SCENTS[0];return `<section class="lx-hero" id="lxHero" style="--hb:${s.hb}">
  <div class="stagebox"><div class="wm" aria-hidden="true">LUFT</div>
   ${SCENTS.map((x,i)=>`<img class="jar${i?'':' on'}" data-i="${i}" src="img/scent/jar-${x.k}.webp" alt="LUFT AUTO SCENT ${x.ko} ${x.han} 300g 용기 디자인 시안" ${i?'loading="lazy"':'fetchpriority="high"'} decoding="async">`).join('')}
@@ -1189,7 +1200,7 @@ function scentPage(){
  <section class="st-hero" style="padding-bottom:0"><div class="wrap"><span class="sc-tag">COMING SOON · 출시 예정</span>
   <h1>AUTO SCENT</h1><p>세 가지 향, 세 가지 한국. 300g 고체 방향제 · 차 안에도 방에도.</p></div>
   <div class="wrap sp-hero" style="margin-top:22px"><img src="img/scent/board-line.jpg" alt="편백·청자·달항아리 용기와 박스 디자인 시안" decoding="async"></div></section>
- <div class="sp-video"><video src="video/luft-scent-teaser.mp4" poster="img/scent/board-line.jpg" autoplay muted loop playsinline preload="metadata" aria-label="LUFT AUTO SCENT 소개 영상"></video>
+ <div class="sp-video"><video src="video/luft-film-v.mp4" poster="img/scent/film-poster-v.jpg" autoplay muted loop playsinline preload="metadata" aria-label="LUFT AUTO SCENT 소개 영상"></video>
   <div>${nfHTML('nfScent')}<p class="note-img" style="margin-top:10px">가격과 출시일은 판매를 시작할 때 공개해요. 이미지는 3D 렌더 디자인 시안이에요.</p></div></div>
  ${SCENTS.map(x=>`<section class="sp-block" style="--cb:${x.bg};--ci:${x.ink}"><div class="wrap row">
   <img src="img/scent/box-${x.k}.jpg" alt="${x.ko} 박스 앞면 디자인 시안" loading="lazy" decoding="async">
