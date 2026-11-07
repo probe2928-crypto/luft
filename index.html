@@ -373,7 +373,9 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
 :root{--f-serif:"Noto Serif KR","Nanum Myeongjo",serif;--pine:#22372B;--celadon:#9FBBA9;--moon:#EEE9DF;--seal:#B5322A;--gold:#C9A464}
 .pansik{position:relative;border:3px solid currentColor}
 .pansik::after{content:"";position:absolute;inset:6px;border:1px solid currentColor;pointer-events:none}
-.seal{display:inline-grid;place-items:center;background:var(--seal);color:#F7EFE2;font-family:var(--f-serif);font-weight:700;line-height:1.02;border-radius:3px;box-shadow:inset 0 0 0 2px var(--seal),inset 0 0 0 3.5px #F7EFE2;writing-mode:vertical-rl;letter-spacing:.02em}
+.seal{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;background:var(--seal);color:#F7EFE2;font-family:var(--f-serif);font-weight:700;line-height:1.02;border-radius:3px;box-shadow:inset 0 0 0 2px var(--seal),inset 0 0 0 3.5px #F7EFE2;letter-spacing:.02em;flex:none}
+.seal .sl{all:unset;display:block;line-height:1.02;font:inherit;color:inherit;writing-mode:horizontal-tb}
+@media(max-width:520px){.trust .t b{font-size:17px;word-break:keep-all;line-height:1.3}.trust .t span{word-break:keep-all}}
 .eomi{display:inline-block;width:30px;height:16px;background:currentColor;clip-path:polygon(0 0,100% 0,100% 40%,70% 100%,50% 62%,30% 100%,0 40%)}
 /* hero */
 .lx-hero{position:relative;overflow:hidden;background:var(--hb,#EFD9C2);transition:background .9s ease;padding:28px 0 36px}
@@ -1110,7 +1112,7 @@ const SCENTS=[
  {k:'yuzu',ko:'청자',han:'翡色',hanR:'비색',en:'CELADON · YUZU',no:'02',note:'유자 · 청귤 · 산뜻한 초록',line:'고려 사람들은 청자의 빛을 비색(翡色)이라 했어요. 그 푸른 빛 위로 떨어진 노란 유자 한 알.',bg:'#9FBBA9',ink:'#183428',ln:'rgba(24,52,40,.55)',hb:'#EFE3C4'},
  {k:'tea',ko:'달항아리',han:'白',hanR:'백',en:'MOON JAR · KOREAN TEA',no:'03',note:'한국 차 · 따뜻한 김 · 포근함',line:'넉넉하게 둥근 백자 달항아리, 그 곁에 놓인 따뜻한 차 한 잔의 향.',bg:'#EEE9DF',ink:'#2A2722',ln:'rgba(42,39,34,.5)',hb:'#EDE2D6'}];
 const NOTIFY_URL='https://formsubmit.co/ajax/probe2928@gmail.com';
-const sealH=(t,sz=36)=>`<span class="seal" style="width:${sz}px;height:${sz}px;font-size:${t.length>1?sz*.36:sz*.56}px">${t}</span>`;
+const sealH=(t,sz=36)=>`<span class="seal" style="width:${sz}px;height:${sz}px;font-size:${t.length>1?sz*.36:sz*.56}px">${[...t].map(c=>`<span class="sl">${c}</span>`).join("")}</span>`;
 function heroHTML(){const s=SCENTS[0];return `<section class="lx-hero" id="lxHero" style="--hb:${s.hb}">
  <div class="stagebox"><div class="wm" aria-hidden="true">LUFT</div>
   ${SCENTS.map((x,i)=>`<img class="jar${i?'':' on'}" data-i="${i}" src="img/scent/jar-${x.k}.webp" alt="LUFT AUTO SCENT ${x.ko} ${x.han} 300g 용기 디자인 시안" ${i?'loading="lazy"':'fetchpriority="high"'} decoding="async">`).join('')}
