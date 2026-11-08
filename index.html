@@ -385,6 +385,8 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
 .lx-film .km{position:absolute;inset:0;opacity:0;transition:opacity .6s}.lx-film video{transition:opacity .6s}.lx-film.still .km{opacity:1}.lx-film.still video{opacity:0}
 .lx-film .km img{opacity:0;animation:kmf 18s infinite;transform-origin:50% 45%}
 .lx-film .km img:nth-child(2){animation-delay:3s}.lx-film .km img:nth-child(3){animation-delay:6s}.lx-film .km img:nth-child(4){animation-delay:9s}.lx-film .km img:nth-child(5){animation-delay:12s}.lx-film .km img:nth-child(6){animation-delay:15s}
+@media(prefers-reduced-motion:reduce){.lx-film .km img{animation:kmfr 18s infinite!important}.lx-film .km img:nth-child(2){animation-delay:3s!important}.lx-film .km img:nth-child(3){animation-delay:6s!important}.lx-film .km img:nth-child(4){animation-delay:9s!important}.lx-film .km img:nth-child(5){animation-delay:12s!important}.lx-film .km img:nth-child(6){animation-delay:15s!important}.lx-film .km,.lx-film video{transition:opacity .6s!important}}
+@keyframes kmfr{0%{opacity:0}4%{opacity:1}17%{opacity:1}22%{opacity:0}100%{opacity:0}}
 @keyframes kmf{0%{opacity:0;transform:scale(1.08)}4%{opacity:1}17%{opacity:1}22%{opacity:0;transform:scale(1)}100%{opacity:0}}
 .lx-film .fo{position:absolute;left:0;right:0;bottom:0;padding:22px 16px 26px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;background:linear-gradient(transparent,rgba(0,0,0,.38))}
 .lx-film .fo .cta{box-shadow:0 8px 24px rgba(0,0,0,.25)}
@@ -1127,8 +1129,9 @@ const SCENTS=[
 const NOTIFY_URL='https://formsubmit.co/ajax/probe2928@gmail.com';
 const MK={pine:"#C9A464",yuzu:"#183428",tea:"#2A2722"};
 const sealH=(t,sz=36,c)=>`<span class="seal" style="${c?`color:${c};`:""}width:${sz}px;height:${sz}px;font-size:${t.length>1?sz*.36:sz*.56}px">${[...t].map(c=>`<span class="sl">${c}</span>`).join("")}</span>`;
-function filmHTML(){const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,v=matchMedia('(max-aspect-ratio: 1/1)').matches,o=v?'v':'h';
- return `<section class="lx-film still" aria-label="LUFT AUTO SCENT 브랜드 필름">${rm?`<img src="img/scent/film-poster-${o}.jpg" alt="LUFT AUTO SCENT 브랜드 필름 장면 — 편백 歲寒">`:`<video id="lxFilm" src="video/luft-film-${o}.mp4?v=2" poster="img/scent/film-k2-${o}.jpg" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" aria-label="LUFT AUTO SCENT 20초 브랜드 필름"></video><div class="km" aria-hidden="true">${[1,2,3,4,5,6].map(i=>`<img src="img/scent/film-k${i}-${o}.jpg" alt="" decoding="async">`).join('')}</div>`}
+function filmHTML(){const v=matchMedia('(max-aspect-ratio: 1/1)').matches,o=v?'v':'h';
+ // '동작 줄이기'가 켜진 아이폰에서도 첫 화면은 움직여야 함(사장님 지시) → 정지 이미지 분기 없음, 동작 줄이기면 확대만 빼고 장면 전환
+ return `<section class="lx-film still" aria-label="LUFT AUTO SCENT 브랜드 필름"><video id="lxFilm" src="video/luft-film-${o}.mp4?v=2" poster="img/scent/film-k2-${o}.jpg" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" aria-label="LUFT AUTO SCENT 20초 브랜드 필름"></video><div class="km" aria-hidden="true">${[1,2,3,4,5,6].map(i=>`<img src="img/scent/film-k${i}-${o}.jpg" alt="" decoding="async">`).join('')}</div>
  <div class="fo"><a class="cta" href="#scent">출시 알림 받기 <span class="arr">→</span></a><a class="cta ghostbtn" href="#story">만든 이야기</a></div></section>`}
 function heroHTML(){const s=SCENTS[0];return `<section class="lx-hero" id="lxHero" style="--hb:${s.hb}">
  <div class="stagebox"><div class="wm" aria-hidden="true">LUFT</div>
