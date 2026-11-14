@@ -488,6 +488,32 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
 .sp-video{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:28px;align-items:center;padding:56px 16px;max-width:1200px;margin:0 auto}
 .sp-video video{width:100%;border-radius:16px;background:#000}
 @media (max-width:760px){.sp-video{grid-template-columns:1fr}.sp-video video{max-width:320px;margin:0 auto}}
+
+/* 시안 2026-11-14 디자인율: 히어로 바로 아래 '지금 주문되는 케이스' — 상품 무대색(베이지) 단색, 케이스 하나 크게, 스펙 라벨 */
+.cf{background:var(--cf,var(--sand));border-top:1.5px solid var(--ink);overflow:hidden}
+.cf .wrap{padding-block:clamp(40px,7vw,88px) clamp(28px,4vw,48px);display:grid;grid-template-columns:1fr minmax(220px,340px) 1fr;grid-template-areas:"h h h" "l im r" "f f f";column-gap:24px;align-items:center}
+.cf h2{grid-area:h;font-family:var(--f-display);font-weight:900;font-stretch:66%;font-size:clamp(44px,6vw,84px);line-height:1;letter-spacing:-.02em;text-align:center;margin:0 0 clamp(8px,2vw,20px);text-wrap:balance}
+.cf .cf-im{grid-area:im;display:block;aspect-ratio:876/1300;overflow:hidden}
+.cf .cf-im img{width:100%;height:auto;mix-blend-mode:multiply;display:block;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.cf .cf-im:hover img{transform:translateY(-6px) rotate(-1deg)}
+.cf .cf-l{grid-area:l}.cf .cf-r{grid-area:r;text-align:right}
+.cf dl{margin:0;display:grid;gap:22px}
+.cf dt{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.cf dd{margin:4px 0 0;font-family:var(--f-display);font-weight:800;font-stretch:78%;font-size:clamp(18px,2vw,26px);line-height:1.05}
+.cf .cf-foot{grid-area:f;display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:clamp(12px,2vw,24px)}
+.cf .cf-name{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-align:center}
+.cf .cf-name b{font-family:var(--f-display);font-weight:900;font-stretch:70%;font-size:22px;letter-spacing:0;display:block;text-transform:none;margin-bottom:2px}
+.cf .cf-rail{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;max-width:100%;padding:2px}
+.cf .cf-rail::-webkit-scrollbar{display:none}
+.cf .cf-rail a{flex:0 0 52px;height:72px;border-radius:8px;background:rgba(251,246,241,.55);display:grid;place-items:center;outline-offset:2px}
+.cf .cf-rail a[aria-current]{background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cf .cf-rail img{width:44px;height:64px;object-fit:contain;mix-blend-mode:multiply}
+@media (max-width:760px){
+ .cf .wrap{grid-template-columns:1fr 1fr;grid-template-areas:"h h" "im im" "l r" "f f";row-gap:18px}
+ .cf .cf-im{width:min(66%,280px);justify-self:center}
+ .cf .wrap{padding-block:40px 32px}
+ .cf dl{gap:14px}
+}
 </style>
 
 <div class="marq mono" aria-label="공지"><div class="track"><span><b>AUTO SCENT 편백 · 청자 · 달항아리 — 출시 알림 신청 받는 중</b><b>1년 넘게 직접 써 보며 고치고 또 고친 고체 방향제 300g</b><b>SEOUL COLLECTION 한국 유산 모티프 케이스 7종 14,900원</b><b>내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>국내 제작 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span><span aria-hidden="true"><b>AUTO SCENT 편백 · 청자 · 달항아리 — 출시 알림 신청 받는 중</b><b>1년 넘게 직접 써 보며 고치고 또 고친 고체 방향제 300g</b><b>SEOUL COLLECTION 한국 유산 모티프 케이스 7종 14,900원</b><b>내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>국내 제작 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span></div></div>
@@ -652,11 +678,23 @@ function setCard(s){const ls=listSum(s);return `<article class="setcard reveal">
   <div class="price-row"><strong style="color:var(--paper)">${won(s.price)}</strong><s>${won(ls)}</s><span class="save">${won(ls-s.price)} 절약</span></div>
   <div><button class="cta" type="button" data-set="${s.id}" style="background:${P[s.items[0]].stage};color:var(--ink)">세트 담기 <span class="arr">→</span></button></div>
  </article>`}
+const caseFirstHTML=()=>{const id=ORDER[0],p=P[id],sp=p.specs||[];const lab=a=>`<dl>${a.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
+ return `<section class="cf" style="--cf:${p.stage}" aria-label="지금 주문할 수 있는 케이스"><div class="wrap">
+ <h2>케이스는<br>지금 주문돼요</h2>
+ <div class="cf-l">${lab(sp.slice(0,2))}</div>
+ <a class="cf-im" href="#p-${id}" aria-label="${p.ko} 보기"><img src="${p.img}" alt="${p.ko}" decoding="async"></a>
+ <div class="cf-r">${lab(sp.slice(2))}</div>
+ <div class="cf-foot">
+  <p class="cf-name"><b>${p.name}</b>${p.ko.split(' · ').pop()} · ${won(p.price)}</p>
+  <a class="cta" href="#shop">케이스 ${ORDER.length}가지 보기 <span aria-hidden="true">→</span></a>
+  <nav class="cf-rail" aria-label="케이스 바로 가기">${ORDER.map(x=>`<a href="#p-${x}" ${x===id?'aria-current="true"':''} aria-label="${P[x].ko}"><img src="${P[x].img}" alt="" loading="lazy" decoding="async"></a>`).join('')}</nav>
+ </div></div></section>`};
 function home(anchor){
  setStage(P[COLL[NEWC].ids[0]].stage);
  app.innerHTML=`
  ${filmHTML()}
  ${heroHTML()}
+ ${caseFirstHTML()}
  <div class="trust"><div class="wrap"><div class="t"><b>전 상품 무료배송</b><span>금액 조건 없음 · 송장 문자 안내</span></div><div class="t"><b>국내 제작 2–4일</b><span>케이스는 주문마다 한 개씩 (영업일)</span></div><div class="t"><b>한국어 고객센터</b><span>평일 10–18시, 하루 안에 답변</span></div><div class="t"><b>안전결제</b><span>토스페이먼츠 · 2개 이상 10% 할인</span></div></div></div>
  ${scentHTML()}
  ${storyBandHTML()}
