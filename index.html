@@ -1131,7 +1131,7 @@ const MK={pine:"#C9A464",yuzu:"#183428",tea:"#2A2722"};
 const sealH=(t,sz=36,c)=>`<span class="seal" style="${c?`color:${c};`:""}width:${sz}px;height:${sz}px;font-size:${t.length>1?sz*.36:sz*.56}px">${[...t].map(c=>`<span class="sl">${c}</span>`).join("")}</span>`;
 function filmHTML(){const v=matchMedia('(max-aspect-ratio: 1/1)').matches,o=v?'v':'h';
  // '동작 줄이기'가 켜진 아이폰에서도 첫 화면은 움직여야 함(사장님 지시) → 정지 이미지 분기 없음, 동작 줄이기면 확대만 빼고 장면 전환
- return `<section class="lx-film still" aria-label="LUFT AUTO SCENT 브랜드 필름"><video id="lxFilm" src="video/luft-film-${o}.mp4?v=2" poster="img/scent/film-k2-${o}.jpg" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" aria-label="LUFT AUTO SCENT 20초 브랜드 필름"></video><div class="km" aria-hidden="true">${[1,2,3,4,5,6].map(i=>`<img src="img/scent/film-k${i}-${o}.jpg" alt="" decoding="async">`).join('')}</div>
+ return `<section class="lx-film still" aria-label="LUFT AUTO SCENT 브랜드 필름"><video id="lxFilm" src="video/luft-film-${o}.mp4?v=3" poster="img/scent/film-k2-${o}.jpg" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" aria-label="LUFT AUTO SCENT 20초 브랜드 필름"></video><div class="km" aria-hidden="true">${[1,2,3,4,5,6].map(i=>`<img src="img/scent/film-k${i}-${o}.jpg" alt="" decoding="async">`).join('')}</div>
  <div class="fo"><a class="cta" href="#scent">출시 알림 받기 <span class="arr">→</span></a><a class="cta ghostbtn" href="#story">만든 이야기</a></div></section>`}
 function heroHTML(){const s=SCENTS[0];return `<section class="lx-hero" id="lxHero" style="--hb:${s.hb}">
  <div class="stagebox"><div class="wm" aria-hidden="true">LUFT</div>
