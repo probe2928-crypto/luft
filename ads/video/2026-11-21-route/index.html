@@ -1,0 +1,426 @@
+<!doctype html>
+<!-- LUFT ORIGINAL · ROUTE 「다음 여행을, 폰 뒤에」 9:16 15.5s — 연출아 2026-11-21. 케이스 면 = print/case-route.png(실제 인쇄 파일) -->
+<html lang="ko" data-resolution="1080x1920">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="assets/gsap.min.js"></script>
+<style>
+@font-face{font-family:"Archivo";src:url("assets/fonts/archivo-latin-wdth-normal.woff2") format("woff2");font-weight:100 900;font-stretch:62% 125%}
+@font-face{font-family:"PlexL";src:url("assets/fonts/ibm-plex-sans-kr-latin-500-normal.woff2") format("woff2");font-weight:500}
+@font-face{font-family:"PlexL";src:url("assets/fonts/ibm-plex-sans-kr-latin-700-normal.woff2") format("woff2");font-weight:700}
+@font-face{font-family:"PlexK";src:url("assets/fonts/ibm-plex-sans-kr-korean-500-normal.woff2") format("woff2");font-weight:500}
+@font-face{font-family:"PlexK";src:url("assets/fonts/ibm-plex-sans-kr-korean-700-normal.woff2") format("woff2");font-weight:700}
+@font-face{font-family:"PlexMono";src:url("assets/fonts/ibm-plex-mono-latin-500-normal.woff2") format("woff2");font-weight:500}
+/* the print file's own faces (casegen art_route): DejaVu Sans Bold squeezed for codes, DejaVu Sans Mono for fields */
+@font-face{font-family:"DJB";src:url("assets/fonts/DejaVuSans-Bold.ttf") format("truetype");font-weight:700}
+@font-face{font-family:"DJM";src:url("assets/fonts/DejaVuSansMono.ttf") format("truetype");font-weight:400}
+:root{
+  --ground:#110D0A; --ground-2:#2A1C12; --ink:#FBF6F1; --ink-2:rgba(251,246,241,.62);
+  --amber:#FFB066; --peach:#F1C7A6; --sand:#E4D7C5; --black:#141210; --red:#B5431F;
+  --f-body:"PlexL","PlexK",sans-serif; --f-mono:"PlexMono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ground)}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:var(--f-body);color:var(--ink);background:var(--ground)}
+.full{position:absolute;left:0;top:0;width:1080px;height:1920px}
+.mono{font-family:var(--f-mono);font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.mask{display:block;overflow:hidden;padding:.04em .02em .12em}
+.mask > span{display:inline-block}
+#bg{background:radial-gradient(ellipse 80% 55% at 50% 52%, var(--ground-2) 0%, var(--ground) 70%)}
+#vig{z-index:40;background:radial-gradient(ellipse 95% 80% at 50% 48%, transparent 60%, rgba(0,0,0,.45) 100%)}
+#grain{z-index:41;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- S1 departure board ---------- */
+#s1{z-index:10}
+#hook{position:absolute;left:0;top:176px;width:1080px;text-align:center;word-break:keep-all;z-index:3}
+#hook .a{font-size:58px;font-weight:500;color:var(--ink-2);letter-spacing:-.015em}
+#hook .b{font-size:132px;font-weight:700;letter-spacing:-.035em;line-height:1.08;color:var(--ink)}
+#hook em{font-style:normal;color:var(--amber)}
+#bcam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+#board{position:absolute;left:28px;top:492px;width:1024px;height:930px;border-radius:26px;background:linear-gradient(#0B0907,#14100D);box-shadow:inset 0 0 0 2px rgba(255,200,150,.06),0 40px 80px rgba(0,0,0,.6)}
+#bhead{position:absolute;left:30px;right:30px;top:22px;display:flex;justify-content:space-between;font:500 24px var(--f-mono);letter-spacing:.16em;color:var(--amber)}
+#bhead span:last-child{color:rgba(251,246,241,.45)}
+.row{position:absolute;left:18px;width:988px;height:146px;border-radius:16px}
+.row .hl{position:absolute;inset:0;border-radius:16px;background:linear-gradient(90deg,rgba(255,176,102,.22),rgba(255,176,102,.06));box-shadow:inset 4px 0 0 var(--amber);opacity:0}
+.fc{position:absolute;border-radius:7px;background:#1E1A16;overflow:visible;perspective:500px}
+.fc .h{position:absolute;left:0;width:100%;height:50%;overflow:hidden;background:linear-gradient(#26211C,#1E1A16)}
+.fc .h.t{top:0;border-radius:7px 7px 0 0}
+.fc .h.b{top:50%;border-radius:0 0 7px 7px;background:linear-gradient(#1A1612,#221D18)}
+.fc .g{position:absolute;left:0;width:100%;text-align:center;font-family:"DJB";font-weight:700;color:#F3E9D8}
+.fc .h.b .g{top:-100%}
+.fc .h.t .g{top:0}
+.fc .fl{position:absolute;left:0;width:100%;height:50%;overflow:hidden;backface-visibility:hidden}
+.fc .seam{position:absolute;left:0;top:50%;width:100%;height:2px;margin-top:-1px;background:#070605;z-index:3}
+.fc .fl .g{top:0}
+.fc .fl.bot .g{top:-100%}
+.cityc{position:absolute;left:660px;top:34px}
+.cityc b{display:block;font:700 29px var(--f-body);letter-spacing:.02em;color:#F3E9D8}
+.cityc span{display:block;font:500 21px var(--f-mono);letter-spacing:.12em;color:rgba(243,233,216,.5);margin-top:6px}
+.st{position:absolute;right:22px;top:46px;font:500 21px var(--f-mono);letter-spacing:.12em;color:rgba(243,233,216,.42)}
+.st.on{color:#1a120b;background:var(--amber);padding:8px 14px;border-radius:999px;top:40px;font-weight:500;opacity:0}
+
+/* ---------- case (real print file) ---------- */
+#s2{z-index:10}
+#ccam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+#stage{position:absolute;left:0;top:0;width:1080px;height:1920px;perspective:2600px;perspective-origin:540px 835px}
+#rig{position:absolute;left:299.7px;top:340px;width:480.6px;height:990px;transform-style:preserve-3d}
+#cshadow{position:absolute;left:20px;top:955px;width:440px;height:80px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.9),rgba(0,0,0,0));transform:translateZ(-40px)}
+.edge{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:62px;background:#bfae95}
+.case{position:absolute;left:0;top:0;width:100%;height:100%;border-radius:62px;overflow:hidden;background:#E4D7C5;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35),inset 0 -12px 26px rgba(90,60,30,.16)}
+.art{position:absolute;left:0;top:0;width:1500px;height:3090px;transform-origin:0 0}
+.art img{position:absolute;left:0;top:0;width:1500px;height:3090px}
+.patch{position:absolute;background:#E4D7C5}
+.code{position:absolute;top:1040px;height:440px;font-family:"DJB";font-weight:700;font-size:506px;line-height:1;color:#131110;white-space:nowrap;transform-origin:0 0}
+.code i{display:inline-block;font-style:normal;transform-origin:50% 60%}
+.fld{position:absolute;font-family:"DJM";color:#131110;white-space:nowrap;line-height:1}
+.fld i{display:inline-block;font-style:normal;transform-origin:50% 55%}
+.caret{display:inline-block;width:6px;background:#D9622B;vertical-align:baseline}
+.isl{position:absolute;left:4.6%;top:2.3%;width:37.5%;height:18.3%;border-radius:23%;background:rgba(210,198,178,.75);box-shadow:inset 0 0 0 2px rgba(255,255,255,.45),inset 0 -6px 14px rgba(120,96,60,.18),0 3px 8px rgba(80,55,25,.18)}
+.isl i{position:absolute;width:36%;height:37%;border-radius:50%;background:radial-gradient(circle at 50% 50%,#5d5650 0 34%,#2f2a26 35% 62%,#4a433d 63% 100%);box-shadow:0 2px 4px rgba(0,0,0,.35)}
+.isl i:after{content:"";position:absolute;left:22%;top:18%;width:26%;height:20%;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0));transform:rotate(-30deg)}
+.isl i:before{content:"";position:absolute;inset:16%;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(120,140,170,.35),rgba(10,12,20,.0) 60%)}
+.isl .k1{left:8%;top:7%} .isl .k2{left:8%;top:56%} .isl .k3{left:57%;top:31.5%}
+.matte{position:absolute;inset:0;opacity:.07;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.rimhl{position:absolute;inset:0;border-radius:inherit;box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.55),inset -1.5px -2px 0 rgba(120,90,60,.22)}
+.gloss{position:absolute;inset:0;background:linear-gradient(105deg,transparent 0%,transparent 40%,rgba(255,252,244,.42) 49%,transparent 58%,transparent 100%);background-size:300% 100%;background-position:100% 0;mix-blend-mode:screen}
+
+/* captions on the case scene */
+.cap{z-index:20}
+.capin{position:absolute;left:0;top:172px;width:1080px;text-align:center;word-break:keep-all}
+#capA .band{display:none}
+#capA .capin{color:var(--ink)}
+#capA .mono{font-size:26px;color:var(--amber);margin-top:14px}
+#capA .t{font-size:62px;font-weight:700;letter-spacing:-.025em;margin-top:6px}
+.step{display:flex;justify-content:center;align-items:baseline;gap:20px}
+.step .n{font:500 30px var(--f-mono);letter-spacing:.1em;color:var(--amber)}
+.step .t{font-size:72px;font-weight:700;letter-spacing:-.03em;color:var(--ink)}
+.sub{font-size:36px;font-weight:500;color:var(--ink-2);margin-top:4px;letter-spacing:-.01em}
+.capbg{display:none}
+#cap4 .t{font-size:70px;font-weight:700;letter-spacing:-.03em}
+#cap4 .mono{font-size:33px;letter-spacing:.06em;color:#FFC48A;margin-top:16px}
+
+/* ---------- end ---------- */
+#end{z-index:30;background:var(--peach)}
+#wm{position:absolute;left:556px;top:300px;width:480px;display:flex;flex-direction:column;align-items:flex-start;gap:18px;color:var(--black)}
+#wm svg{width:104px;height:87px;display:block}
+#wm b{font-family:"Archivo";font-weight:900;font-stretch:62%;font-size:216px;line-height:.8;letter-spacing:-.005em}
+#wm .mask{padding:.1em 0 0}
+#ehead{position:absolute;left:556px;top:640px;width:470px;text-align:left;line-height:1.16;word-break:keep-all;font-size:66px;font-weight:700;letter-spacing:-.03em;color:var(--black)}
+#erig{position:absolute;left:64px;top:262px;width:446px;height:918.6px}
+#erig .case{border-radius:58px}
+#eshadow{position:absolute;left:6%;top:calc(100% - 24px);width:88%;height:52px;border-radius:50%;background:radial-gradient(closest-side,rgba(110,55,22,.4),rgba(110,55,22,0))}
+#chips{position:absolute;left:556px;top:860px;width:480px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+#chips span{font:700 28px var(--f-body);color:var(--black);border:2px solid var(--black);border-radius:999px;padding:8px 22px;letter-spacing:-.01em}
+#cta{position:absolute;left:0;top:1228px;width:1080px;display:flex;justify-content:center}
+#cta u{text-decoration:none;display:flex;align-items:center;gap:20px;background:var(--black);color:#fff;height:86px;padding:0 17px 0 42px;border-radius:999px;font:700 33px var(--f-body);letter-spacing:-.02em}
+#cta u em{font-style:normal;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--peach);color:var(--black);font:700 30px var(--f-body)}
+#efloor{position:absolute;left:0;top:1060px;width:1080px;height:900px;background:linear-gradient(to bottom,rgba(226,173,134,0) 0,rgba(226,173,134,.7) 22%,#DDA47C 70%,#D69A71 100%)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="sun" viewBox="0 0 36 30"><path d="M5 15a13 13 0 0 1 26 0" fill="none" stroke="currentColor" stroke-width="3.4"/><path d="M1 17h34M9 22h18M14 27h8" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></symbol>
+</defs></svg>
+<div id="root" data-composition-id="main" data-start="0" data-duration="15.5" data-width="1080" data-height="1920" data-motion-blur="off">
+
+  <div id="bg" class="clip full" data-start="0" data-duration="10.6" data-track-index="0"></div>
+
+  <!-- S1 · departure board, frame 0 already flapping + hook -->
+  <div id="s1" class="clip full" data-start="0" data-duration="0.9" data-track-index="1" data-track-kind="graphics">
+    <div id="bcam">
+      <div id="board" data-layout-allow-overlap data-layout-allow-overflow>
+        <div id="bhead"><span>DEPARTURES · 출발</span><span>ICN · T2</span></div>
+        <div id="rows"></div>
+      </div>
+    </div>
+    <div id="peek" style="position:absolute;left:360px;top:1548px;width:480.6px;height:990px;transform:rotate(-7deg);transform-origin:50% 0;filter:drop-shadow(0 -10px 40px rgba(0,0,0,.6))"><div class="case" id="pcase"></div></div>
+    <div id="hook">
+      <div class="a mask"><span>내 이름이 찍힌 탑승권,</span></div>
+      <div class="b mask"><span><em>폰 케이스</em>로.</span></div>
+    </div>
+  </div>
+
+  <!-- S2 · the ROUTE case (real print) -->
+  <div id="s2" class="clip full" data-start="0.9" data-duration="9.7" data-track-index="2" data-track-kind="graphics">
+    <div id="ctx" style="position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;overflow:hidden"><div id="ctxin" style="position:absolute;inset:-60px;background:linear-gradient(180deg,#141B28 0%,#26303F 38%,#3A2C25 70%,#1A120D 100%)"></div><div id="bok" style="position:absolute;inset:0;filter:blur(16px)"></div><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,8,6,.0),rgba(10,8,6,0) 30%,rgba(10,8,6,0) 70%,rgba(10,8,6,0));"></div><div id="mull"></div><div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 50% 52%,rgba(17,13,10,.55),rgba(17,13,10,0) 70%)"></div></div>
+    <div id="rim" style="position:absolute;left:90px;top:420px;width:900px;height:1100px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,160,90,.20),rgba(255,160,90,0));opacity:0"></div><div id="ccam"><div id="stage"><div id="rig">
+      <div id="cshadow"></div>
+      <div class="edge" id="edge"></div>
+      <div class="case" id="hcase"></div>
+    </div></div></div>
+  </div>
+
+  <div id="capA" class="clip cap full" data-start="1.0" data-duration="1.8" data-track-index="3" data-track-kind="graphics">
+    <div class="band"></div>
+    <div class="capin">
+      <div class="mono mask"><span>LUFT ORIGINAL · ROUTE</span></div>
+      <div class="t mask"><span>공항 코드 · 이름 · 날짜를 직접.</span></div>
+    </div>
+  </div>
+  <div id="cap1" class="clip cap full" data-start="2.8" data-duration="1.5" data-track-index="4" data-track-kind="graphics">
+    <div class="capbg"></div>
+    <div class="capin"><div class="step mask"><span class="n">01</span><span class="t">공항 코드 두 개</span></div><div class="sub mask"><span>출발 → 도착, 영문 3자씩</span></div></div>
+  </div>
+  <div id="cap2" class="clip cap full" data-start="4.3" data-duration="1.7" data-track-index="5" data-track-kind="graphics">
+    <div class="capbg"></div>
+    <div class="capin"><div class="step mask"><span class="n">02</span><span class="t">탑승객 이름</span></div><div class="sub mask"><span>영문 18자까지</span></div></div>
+  </div>
+  <div id="cap3" class="clip cap full" data-start="6.0" data-duration="1.4" data-track-index="6" data-track-kind="graphics">
+    <div class="capbg"></div>
+    <div class="capin"><div class="step mask"><span class="n">03</span><span class="t">날짜</span></div><div class="sub mask"><span>기념일 날짜도 그대로</span></div></div>
+  </div>
+  <div id="cap4" class="clip cap full" data-start="8.0" data-duration="2.6" data-track-index="7" data-track-kind="graphics">
+    <div class="capin"><div class="t mask"><span>주문한 그 한 개만 만들어요.</span></div><div class="mono mask"><span>국내 주문 제작 · 결제 후 보통 2–4 영업일</span></div></div>
+  </div>
+
+  <!-- END · peach hard cut -->
+  <div id="end" class="clip full" data-start="10.6" data-duration="4.9" data-track-index="8" data-track-kind="graphics">
+    <div id="efloor"></div>
+    <div id="wm"><div class="mask"><span id="wmsun"><svg><use href="#sun"/></svg></span></div><div class="mask"><b id="wmt">LUFT</b></div></div>
+    <div id="ehead"><div class="mask"><span>다음 여행을,</span></div><div class="mask"><span>폰 뒤에.</span></div></div>
+    <div id="erig"><div id="eshadow"></div><div class="case" id="ecase"></div></div>
+    <div id="chips"><span>국내 주문 제작</span><span>결제 후 보통 2–4 영업일</span><span>전 상품 무료배송</span></div>
+    <div id="cta"><u>LUFT 스토어에서 내 탑승권 케이스 만들기 <em>→</em></u></div>
+  </div>
+
+  <div id="vig" class="clip full" data-start="0" data-duration="10.6" data-track-index="9"></div>
+  <div id="grain" class="clip full" data-start="0" data-duration="15.5" data-track-index="10"></div>
+  <audio id="mix" src="assets/audio/route-mix.wav" data-start="0" data-duration="15.5" data-track-index="11" data-volume="1"></audio>
+</div>
+
+<script>
+(function(){
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+
+/* ================= case markup (print + patched variable fields) ================= */
+// print px boxes measured on print/case-route.png (1500x3090): FROM ink x142-565, TO ink x940-1371, cap 1071-1440;
+// PASSENGER value cap 1667-1725 x121; DATE value cap 1928-1980 x121.
+function caseHTML(p){
+  return '<div class="art" data-s="'+p.s+'"><img src="assets/img/case-route.png" alt="">'+
+   '<div class="patch" style="left:925px;top:1050px;width:470px;height:410px"></div>'+
+   '<div class="patch" style="left:105px;top:1650px;width:900px;height:95px"></div>'+
+   '<div class="patch" style="left:105px;top:1915px;width:460px;height:80px"></div>'+
+   '<div class="code" data-box="940,1371">'+[...p.to].map(c=>'<i>'+c+'</i>').join('')+'</div>'+
+   '<div class="fld nm" style="left:121px;top:1667px;font-size:79.6px">'+p.name+'</div>'+
+   '<div class="fld dt" style="left:121px;top:1928px;font-size:71.4px">'+[...p.date].map(c=>'<i>'+c+'</i>').join('')+'</div>'+
+   (p.focus||'')+'</div><div class="isl"><i class="k1"></i><i class="k2"></i><i class="k3"></i></div><div class="matte"></div><div class="rimhl"></div><div class="gloss"></div>';
+}
+const hcase=document.getElementById('hcase'), ecase=document.getElementById('ecase');
+const FOCUS='<div id="focus" style="position:absolute;background:#E0782F;border-radius:6px;opacity:0"></div>';
+hcase.innerHTML=caseHTML({s:480.6/1500,to:'LIS',name:'<span id="nmt">YOUR NAME</span><span class="caret" id="caret"></span>',date:'2026.11.03',focus:FOCUS});
+document.getElementById('pcase').innerHTML=caseHTML({s:480.6/1500,to:'LIS',name:'YOUR NAME',date:'2026.11.03'});
+ecase.innerHTML=caseHTML({s:446/1500,to:'FCO',name:'MINA KIM',date:'2027.05.02'});
+document.querySelectorAll('.art').forEach(a=>{a.style.transform='scale('+a.dataset.s+')';});
+// font metrics -> fit code ink box, place mono fields by cap top
+const cv=document.createElement('canvas').getContext('2d');
+function fitCodes(){ FIT.ready=1; document.querySelectorAll('.code').forEach(el=>fitWord(el,el.textContent));
+  document.querySelectorAll('.code').forEach(el=>{
+    const [x0,x1]=el.dataset.box.split(',').map(Number);
+    cv.font='700 506px DJB'; const txt=el.textContent; const m=cv.measureText(txt);
+    const inkW=m.actualBoundingBoxRight+m.actualBoundingBoxLeft; const sx=(x1-x0)/inkW;
+    const asc=m.fontBoundingBoxAscent||cv.measureText('I').actualBoundingBoxAscent;
+    // baseline at 1440: element top = 1440 - ascent (line-height 1 => ascent+descent box) approx via DOM probe
+    el.style.left=(x0-(-m.actualBoundingBoxLeft)*sx)+'px';
+    el.style.transform='scaleX('+sx+')';
+  });
+  // vertical: align cap top of 'I' at 1071 using a DOM probe of the rendered line box
+  document.querySelectorAll('.code').forEach(el=>{
+    cv.font='700 506px DJB'; const capA=cv.measureText('I').actualBoundingBoxAscent; const fa=cv.measureText('I').fontBoundingBoxAscent;
+    const fd=cv.measureText('I').fontBoundingBoxDescent; const half=(506-(fa+fd))/2; // line-height:1 half-leading
+    el.style.top=(1440-fa-half)+'px';
+  });
+  document.querySelectorAll('.fld').forEach(el=>{
+    const fs=parseFloat(el.style.fontSize); cv.font=fs+'px DJM'; const m=cv.measureText('N');
+    const fa=m.fontBoundingBoxAscent, fd=m.fontBoundingBoxDescent, half=(fs-(fa+fd))/2;
+    const capTop=parseFloat(el.style.top); el.style.top=(capTop+m.actualBoundingBoxAscent-fa-half)+'px';
+    el.dataset.base=el.style.top;
+  });
+  document.querySelectorAll('.caret').forEach(c=>{c.style.height='62px';c.style.marginLeft='8px';c.style.transform='translateY(6px)';});
+}
+
+/* ================= departure board ================= */
+const ROWS=[
+  {time:'13:50',code:'KIX',city:'OSAKA',fl:'LUFT 0721 · GATE 12',st:'ON TIME'},
+  {time:'14:05',code:'LIS',city:'LISBON',fl:'LUFT 1103 · GATE 07',st:'BOARDING',hero:1},
+  {time:'14:20',code:'CDG',city:'PARIS',fl:'LUFT 0516 · GATE 21',st:'ON TIME'},
+  {time:'14:35',code:'HNL',city:'HONOLULU',fl:'LUFT 0928 · GATE 03',st:'ON TIME'},
+  {time:'14:50',code:'FCO',city:'ROME',fl:'LUFT 0644 · GATE 15',st:'ON TIME'}];
+const ABC='ABCDEFGHIJKLMNOPQRSTUVWXYZ', NUM='0123456789';
+const rowsEl=document.getElementById('rows'); const CELLS=[];
+const rng=mulberry32(7);
+ROWS.forEach((r,ri)=>{
+  const row=document.createElement('div'); row.className='row'; row.style.top=(84+ri*164)+'px'; row.id='row'+ri;
+  row.innerHTML='<div class="hl"></div><div class="cityc"><b>'+r.city+'</b><span>'+r.fl+'</span></div>'+
+    (r.hero?'<div class="st" id="stOff">ON TIME</div><div class="st on" id="stOn">BOARDING</div>':'<div class="st">'+r.st+'</div>');
+  rowsEl.appendChild(row);
+  const add=(ch,x,w,h,fs,pool,end)=>{
+    const c=document.createElement('div'); c.className='fc'; c.style.left=x+'px'; c.style.top=((146-h)/2)+'px'; c.style.width=w+'px'; c.style.height=h+'px';
+    const g='<div class="g" style="height:'+h+'px;line-height:'+h+'px;font-size:'+fs+'px"><span style="display:inline-block;transform:scaleX(.72)"></span></div>';
+    c.innerHTML='<div class="h t">'+g+'</div><div class="h b">'+g+'</div><div class="fl">'+g+'</div><div class="seam"></div>';
+    row.appendChild(c);
+    if(ch===':'){c.style.background='transparent';c.innerHTML='<div class="g" style="height:'+h+'px;line-height:'+h+'px;font-size:'+fs+'px">:</div>';return;}
+    const n=pool?4+Math.floor(rng()*6):0; const seq=[]; for(let k=0;k<n;k++) seq.push(pool[Math.floor(rng()*pool.length)]); seq.push(ch);
+    CELLS.push({el:c,seq,end,spans:c.querySelectorAll('.g span'),t:c.querySelector('.h.t span'),b:c.querySelector('.h.b span'),fl:c.querySelector('.fl'),fls:c.querySelector('.fl span')});
+  };
+  const base=.16+ri*.07+(r.hero?.24:0);
+  // time HH:MM
+  [...r.time].forEach((ch,k)=>add(ch,22+k*50,46,84,62,'',0));
+  // destination code, big
+  [...r.code].forEach((ch,k)=>add(ch,300+k*112,104,128,104,r.hero?ABC:'',base+.1+k*.05));
+});
+const P=.05; // flip period
+function drawBoard(t){
+  CELLS.forEach(c=>{
+    const n=c.seq.length-1, t0=c.end-n*P; let u=(t-t0)/P; if(u<0)u=0;
+    const i=Math.min(n,Math.floor(u)), ph=i>=n?1:u-i;
+    const cur=c.seq[i], nxt=c.seq[Math.min(n,i+1)];
+    if(ph>=1||i>=n){ c.t.textContent=cur; c.b.textContent=cur; c.fl.style.opacity=0; return; }
+    c.t.textContent=nxt; c.fl.style.opacity=1;
+    if(ph<.5){ c.b.textContent=cur; c.fls.textContent=cur; c.fl.className='fl'; c.fl.style.top='0'; c.fl.style.transformOrigin='50% 100%';
+      c.fl.style.transform='rotateX('+(-ph*180)+'deg)'; c.fl.style.filter='brightness('+(1-ph*.9)+')'; c.fl.style.background='linear-gradient(#26211C,#1E1A16)'; }
+    else { c.b.textContent=cur; c.fls.textContent=nxt; c.fl.className='fl bot'; c.fl.style.top='50%'; c.fl.style.transformOrigin='50% 0';
+      c.fl.style.transform='rotateX('+((1-ph)*180)+'deg)'; c.fl.style.filter='brightness('+(.4+(ph-.5)*1.2)+')'; c.fl.style.background='linear-gradient(#1A1612,#221D18)'; }
+  });
+}
+
+/* ================= case letter flips (personalisation) ================= */
+const codeIs=()=>document.querySelectorAll('#hcase .code i');
+const FIT={};
+function fitWord(el,word){
+  const [x0,x1]=el.dataset.box.split(',').map(Number);
+  if(!FIT[word]){ cv.font='700 506px DJB'; const m=cv.measureText(word); const inkW=m.actualBoundingBoxRight+m.actualBoundingBoxLeft; const sx=(x1-x0)/inkW; FIT[word]={sx,left:x0-m.actualBoundingBoxLeft*sx}; }
+  el.style.left=FIT[word].left+'px'; el.style.transform='scaleX('+FIT[word].sx+')';
+}
+const TO_SEQ=[[3.75,'CDG'],[4.2,'KIX'],[4.65,'FCO']];
+const DATE_FROM='2026.11.03', DATE_TO='2027.05.02';
+function flipVal(t,t0,dur){ // returns [phase 0..1 of squash, showNew]
+  const u=clamp((t-t0)/dur); return u;
+}
+function drawCase(t){ t=t>=2.5?t+.8:t;
+  // TO code
+  const is=codeIs(); let word='LIS';
+  is.forEach((el,k)=>{
+    let ch='LIS'[k], sy=1, bl=0;
+    TO_SEQ.forEach(([t0,w],wi)=>{ const s=t0+k*.03; const u=clamp((t-s)/.1);
+      if(t>=s){ if(u>=.5) ch=w[k]; else ch=(wi?TO_SEQ[wi-1][1]:'LIS')[k]; if(u<1){ sy=Math.abs(Math.cos(u*Math.PI)); bl=(1-sy)*6; } } });
+    el.textContent=ch; el.style.transform='scaleY('+Math.max(.02,sy).toFixed(3)+')'; el.style.filter=bl>0.2?'blur('+bl.toFixed(1)+'px)':'none';
+  });
+  let stage='LIS'; TO_SEQ.forEach(([t0,w])=>{ if(t>=t0+.07) stage=w; });
+  const ce=document.querySelector('#hcase .code'); if(ce&&FIT.ready) fitWord(ce,stage);
+  // focus ring on the field being edited (print coords)
+  const F=[[3.7,4.95,940,1478,431,10],[5.25,6.65,121,1752,441,9],[6.95,8.1,121,2006,424,9]];
+  const fr=document.getElementById('focus'); let on=0;
+  F.forEach(([a,b,x,y,w,h])=>{ if(t>=a&&t<b){ on=Math.min(1,(t-a)/.18,(b-t)/.15); fr.style.left=x+'px'; fr.style.top=y+'px'; fr.style.width=w+'px'; fr.style.height=h+'px'; } });
+  fr.style.opacity=on;
+  // name: delete 5.55-5.85, type 5.95+
+  const nm=document.getElementById('nmt'), car=document.getElementById('caret'); const FULL='YOUR NAME', NEW='MINA KIM';
+  let s;
+  if(t<5.55) s=FULL; else if(t<5.95){ const k=Math.floor(clamp((t-5.55)/.36)*FULL.length); s=FULL.slice(0,FULL.length-k); } else { const k=Math.floor(clamp((t-5.95)/(.07*NEW.length))*NEW.length+1e-6); s=NEW.slice(0,k); }
+  nm.textContent=s;
+  const caretOn=t>=5.4&&t<6.9; car.style.opacity=caretOn?((Math.floor((t-5.4)/.26)%2===0||(t>5.5&&t<6.6))?1:0):0;
+  // date digits
+  document.querySelectorAll('#hcase .dt i').forEach((el,k)=>{
+    let ch=DATE_FROM[k], sy=1;
+    if(DATE_FROM[k]!==DATE_TO[k]){ const s0=7.12+ (k-3)*.012; const u=clamp((t-s0)/.16); if(t>=s0){ ch=u>=.5?DATE_TO[k]:DATE_FROM[k]; sy=Math.abs(Math.cos(u*Math.PI)); } }
+    el.textContent=ch; el.style.transform='scaleY('+Math.max(.02,sy).toFixed(3)+')';
+  });
+}
+
+/* ================= timeline ================= */
+const tl=gsap.timeline({paused:true});
+const SH=.8, T=x=>x>=3.3?+(x-SH).toFixed(3):x;
+const B=s=>"blur("+s+"px)";
+const S0=480.6/1500, L0=299.7, T0=340;
+// camera helper: put print point (px,py) at screen (tx,ty) with zoom k (#ccam origin 0 0)
+const cam=(k,px,py,tx,ty)=>({scale:k,x:tx-k*(L0+S0*px),y:ty-k*(T0+S0*py)});
+
+// S1 board: hook already readable at frame 0
+tl.fromTo("#hook .a > span",{y:10},{y:0,duration:.6,ease:"power3.out"},0);
+tl.fromTo("#hook .b > span",{y:16,scaleX:1.05},{y:0,scaleX:1,duration:.7,ease:"power3.out"},0);
+tl.fromTo("#bcam",{scale:1,x:0,y:0},{scale:1.035,x:540-1.035*540,y:786-1.035*786,duration:.5,ease:"none"},0);
+tl.to("#row1 .hl",{opacity:1,duration:.22,ease:"expo.out"},.55);
+tl.to("#stOn",{opacity:1,duration:.12},.56); tl.to("#stOff",{opacity:0,duration:.08},.56);
+// push into LIS (cells x 300..628 in row, board left 28 -> screen 346..674 center 510; row1 y 492+84+164 =740 .. 886 center 813)
+const KB=3.0;
+tl.to("#bcam",{scale:KB,x:540-KB*510,y:820-KB*813,duration:.36,ease:"power3.in"},.54);
+tl.to("#bcam",{filter:B(7),duration:.12,ease:"power2.in"},.78);
+tl.to("#hook",{y:-60,opacity:0,duration:.2,ease:"power3.in"},.62);
+tl.to("#peek",{y:260,opacity:0,duration:.3,ease:"power3.in"},.56);
+
+// S2 match cut: case LIS (print center 1155,1255) at same screen spot/size, then pull back
+const KC=6.2;
+tl.fromTo("#ccam",{...cam(KC,1155,1255,540,820),filter:B(6)},{filter:B(0),duration:.14,ease:"none"},.9);
+tl.to("#ccam",{...cam(1.14,750,1545,540,905),duration:.72,ease:"expo.out"},.9);
+tl.to("#ccam",{...cam(1.22,750,1545,540,935),duration:1.0,ease:"sine.inOut"},1.62);
+tl.fromTo("#rig",{rotationY:-10,rotationX:2},{rotationY:6,rotationX:0,duration:1.75,ease:"sine.inOut"},.9);
+// capA
+
+tl.from("#capA .mono > span",{yPercent:110,duration:.45,ease:"power4.out"},1.42);
+tl.from("#capA .t > span",{yPercent:110,duration:.5,ease:"power4.out"},1.5);
+tl.to("#capA .capin",{y:-40,opacity:0,duration:.22,ease:"power3.in"},T(3.36));
+
+tl.to("#rig",{rotationY:0,duration:.5,ease:"power2.inOut"},T(3.45));
+
+// 01 codes macro
+tl.to("#ccam",{...cam(1.7,757,1255,540,1070),duration:.7,ease:"power2.inOut"},T(3.4));
+const capIn=(id,t)=>{tl.from(id+" .step .n, "+id+" .step .t",{yPercent:110,duration:.42,ease:"power4.out",stagger:.06},t);
+  tl.from(id+" .sub > span",{yPercent:110,duration:.4,ease:"power4.out"},t+.1);
+  tl.from(id+" .capbg",{opacity:0,duration:.25},t);};
+capIn("#cap1",T(3.62));
+tl.to("#cap1 .capin",{y:-30,opacity:0,duration:.18,ease:"power3.in"},T(4.9));
+// 02 name
+tl.to("#ccam",{...cam(1.55,560,1700,540,1240),duration:.7,ease:"power2.inOut"},T(5.0));
+capIn("#cap2",T(5.14));
+tl.to("#cap2 .capin",{y:-30,opacity:0,duration:.18,ease:"power3.in"},T(6.6));
+// 03 date
+tl.to("#ccam",{...cam(1.45,560,1955,540,1300),duration:.6,ease:"power2.inOut"},T(6.7));
+capIn("#cap3",T(6.84));
+tl.to("#cap3 .capin",{y:-30,opacity:0,duration:.18,ease:"power3.in"},T(8.0));
+// pull back, then 3/4 turn for the slim hard edge
+tl.to("#ccam",{...cam(1.14,750,1545,540,985),duration:.7,ease:"power2.inOut"},T(8.15));
+tl.to("#ccam",{...cam(1.2,750,1545,540,1010),duration:2.4,ease:"sine.inOut"},T(8.85));
+tl.fromTo("#ctx",{opacity:0},{opacity:1,duration:.7,ease:"power2.out"},T(8.75));
+tl.fromTo("#ctxin, #bok",{x:30},{x:-30,duration:2.6,ease:"none"},T(8.75));
+tl.fromTo("#rim",{opacity:0,scale:.8},{opacity:1,scale:1,duration:1.2,ease:"power2.out"},T(8.8));
+tl.to("#rig",{rotationY:-24,rotationX:3,duration:1.4,ease:"power2.inOut"},T(8.85));
+tl.fromTo("#hcase .gloss",{backgroundPosition:"100% 0"},{backgroundPosition:"0% 0",duration:1.1,ease:"sine.inOut"},T(9.35));
+tl.to("#rig",{rotationY:-14,duration:1.1,ease:"sine.inOut"},T(10.25));
+tl.from("#cap4 .t > span",{yPercent:110,duration:.5,ease:"power4.out"},T(8.9));
+tl.from("#cap4 .mono > span",{yPercent:110,duration:.45,ease:"power4.out"},T(9.05));
+
+// END
+tl.from("#wmsun",{yPercent:105,duration:.7,ease:"power4.out"},10.68);
+tl.from("#wmt",{yPercent:105,duration:.7,ease:"power4.out"},10.68);
+tl.from("#ehead .mask > span",{yPercent:110,duration:.55,ease:"power4.out"},10.98);
+tl.from("#erig",{y:110,opacity:0,duration:.9,ease:"expo.out"},11.1);
+tl.from("#eshadow",{opacity:0,scaleX:.6,duration:.9,ease:"expo.out"},11.15);
+tl.from("#chips span",{y:24,opacity:0,duration:.4,ease:"power3.out",stagger:.07},11.55);
+tl.from("#cta u",{y:30,opacity:0,scale:.96,duration:.5,ease:"expo.out"},11.72);
+
+
+/* edge thickness: offset in Z so a 3/4 turn shows the slim hard side */
+document.getElementById('edge').style.transform='translateZ(-22px)';
+
+(function(){ const r=mulberry32(21), b=document.getElementById('bok'); let h='';
+  for(let i=0;i<46;i++){ const x=r()*1080, y=620+r()*560, d=14+r()*46, warm=r()<.7, a=.25+r()*.55;
+    h+='<i style="position:absolute;left:'+x.toFixed(0)+'px;top:'+y.toFixed(0)+'px;width:'+d.toFixed(0)+'px;height:'+d.toFixed(0)+'px;border-radius:50%;background:'+(warm?'rgba(255,178,102,'+a.toFixed(2)+')':'rgba(150,200,235,'+(a*.7).toFixed(2)+')')+'"></i>'; }
+  // runway edge-light rows
+  for(let i=0;i<24;i++){ const x=(i/23)*1180-50; h+='<i style="position:absolute;left:'+x.toFixed(0)+'px;top:1215px;width:10px;height:10px;border-radius:50%;background:rgba(120,190,255,.8)"></i>'; }
+  b.innerHTML=h;
+  // window mullions (glass wall frame)
+  document.getElementById('mull').innerHTML=[70,380,700,1010].map(x=>'<i style="position:absolute;left:'+x+'px;top:0;width:22px;height:1920px;background:linear-gradient(90deg,#0B0907,#1B1611 50%,#0B0907);opacity:.9"></i>').join('')+'<i style="position:absolute;left:0;top:1330px;width:1080px;height:26px;background:#0B0907;opacity:.9"></i>';
+})();
+function renderAt(t){ drawBoard(t); drawCase(t); }
+window.addEventListener("hf-seek",e=>renderAt(e.detail.time));
+window.__hf=window.__hf||{}; window.__hf.buildReady=window.__hf.buildReady||{};
+window.__hf.buildReady.fonts=Promise.all([document.fonts.load('700 100px DJB','ICNLIS'),document.fonts.load('80px DJM','YOUR'),document.fonts.load('700 30px PlexK','내 이름'),document.fonts.load('700 30px PlexL','A'),document.fonts.load('900 60px Archivo','LUFT')]).then(()=>{fitCodes();renderAt(0);});
+renderAt(0);
+window.__timelines=window.__timelines||{};
+window.__timelines["main"]=tl;
+tl.seek(0);
+})();
+</script>
+</body>
+</html>
