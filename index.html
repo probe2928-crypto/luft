@@ -15,6 +15,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Noto+Serif+KR:wght@300;400;500;700&display=swap">
+
 <style>
 /* Layout: DRIP-style scroll story — a pinned stage where each product takes the screen in turn on its own flat colour field, huge condensed wordmark behind, mono spec labels pinned around; then lineup, bundle, shipping steps. Single deliberate warm light look. */
 :root{
@@ -488,6 +490,28 @@ body::after{content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opa
 .sp-video{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:28px;align-items:center;padding:56px 16px;max-width:1200px;margin:0 auto}
 .sp-video video{width:100%;border-radius:16px;background:#000}
 @media (max-width:760px){.sp-video{grid-template-columns:1fr}.sp-video video{max-width:320px;margin:0 auto}}
+
+/* ===== 2026-11-23 정제: 굵은 압축 워드마크 → 얇고 넓은 자간 (브랜드 필름 엔딩과 통일) ===== */
+:root{--f-display:"Inter","Helvetica Neue",Arial,sans-serif;--f-light:"Inter","Helvetica Neue",Arial,sans-serif}
+.logo{font-family:var(--f-light);font-weight:400;font-stretch:normal;font-size:17px;letter-spacing:.46em;margin-right:-.46em}
+h2,.band h2,.soon h2,.sc-head h2{font-weight:300;font-stretch:normal;letter-spacing:.01em;line-height:1.06}
+h2{font-size:clamp(34px,4.6vw,60px)}
+.band h2{font-size:clamp(34px,4.8vw,66px)}
+.soon h2{font-size:clamp(40px,5.6vw,80px)}
+.sc-head h2{font-size:clamp(40px,6vw,84px);letter-spacing:.06em}
+.sname{font-weight:300;font-stretch:normal;letter-spacing:.04em;line-height:1}
+.setcard h3,.hc h3{font-weight:300;font-stretch:normal;letter-spacing:.02em;line-height:1.1}
+.tile .nm,.lab b,.trust b,.why b,.price-row strong{font-weight:500;font-stretch:normal;letter-spacing:.01em}
+.price-row strong{font-weight:400}
+.steps li::before{font-weight:200;font-stretch:normal;letter-spacing:.02em}
+.ghost{font-weight:200;font-stretch:normal;letter-spacing:.18em;-webkit-text-stroke:1px rgba(20,18,16,.12)}
+.lx-hero .wm{top:17%;font-family:var(--f-light);font-weight:200;font-stretch:normal;font-size:clamp(76px,15vw,230px);letter-spacing:.34em;margin-left:.17em;color:rgba(20,18,16,.86)}
+.lx-hero h1{font-weight:400;letter-spacing:.02em}
+footer .big{font-family:var(--f-light);font-weight:200;font-stretch:normal;font-size:clamp(56px,10vw,150px);letter-spacing:.4em;line-height:1}
+footer .big::after{content:"";display:block;width:56px;height:1px;background:#9C8A66;margin:28px 0 10px}
+.sc-tag{border:0;border-radius:0;padding:0;letter-spacing:.36em}
+.st-hero h1{font-family:var(--f-light);font-weight:200;letter-spacing:.32em;margin-right:-.32em;font-size:clamp(30px,5.4vw,64px)}
+.st-hero h1::after{content:"";display:block;width:48px;height:1px;background:#9C8A66;margin:26px auto 0}
 </style>
 
 <div class="marq mono" aria-label="공지"><div class="track"><span><b>AUTO SCENT 편백 · 청자 · 달항아리 — 출시 알림 신청 받는 중</b><b>1년 넘게 직접 써 보며 고치고 또 고친 고체 방향제 200g</b><b>SEOUL COLLECTION 한국 유산 모티프 케이스 7종 14,900원</b><b>내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>국내 제작 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span><span aria-hidden="true"><b>AUTO SCENT 편백 · 청자 · 달항아리 — 출시 알림 신청 받는 중</b><b>1년 넘게 직접 써 보며 고치고 또 고친 고체 방향제 200g</b><b>SEOUL COLLECTION 한국 유산 모티프 케이스 7종 14,900원</b><b>내 이니셜 넣는 LUFT ORIGINAL 케이스 14,900원부터</b><b>전 상품 무료배송</b><b>아무거나 2개 담으면 10% 할인</b><b>국내 제작 케이스 2~4 영업일</b><b>사진 후기 남기면 다음 주문 3,000원 할인</b></span></div></div>
