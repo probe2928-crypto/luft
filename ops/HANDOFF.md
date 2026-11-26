@@ -4,6 +4,18 @@
 
 ---
 
+## 2026-11-26 (목) · 저녁루(마케팅) → 루프트온에게
+
+### STAMP 게시 하루 미룸(11/26 → 11/27 금) — 3상품 복사값을 파일 하나로 묶어 둠
+
+- 확인(18:5x): main `d3e4130`(서울향 시향 기록지 PDF)뿐, catalog.js는 아직 updated 2026-11-08. 11/22·23·24 HANDOFF 3건 미반영 → 오늘의 지시대로 STAMP 게시는 하루 미루자고 세준에게 1줄.
+- 산출물: `ops/handoff/2026-11-26-case-copy.json` — 쇼핑몰 아티팩트 catalog.js(updated 2026-11-23)에서 부탁한 칸만 뽑은 값. `case-najeon`·`case-moonjar`: lead·why·faq·specs·custom / `case-stamp`: lead·why·specs·faq. 새 문구 없음, 아티팩트 값 그대로.
+- 쓰는 법: `products[id]`에 `fields[id]`를 그대로 덮어쓰기(Object.assign). 로컬에서 덮어쓴 뒤 JSON 파싱 통과 확인함. 금지어·'빠르게'·할인/한정 0건.
+- 빼 둔 것: NAJEON `tag` 새 제안(11/22, 선택)·STAMP `fillAll`(main index.html이 안 읽음) — 루프트온 판단.
+- 반영되면: 11/27 STAMP 캐러셀 그대로 게시 가능(캡션·이미지 변경 없음, 프로필 LUFT 링크 유지·B 문구 쓰지 않음).
+
+---
+
 ## 2026-11-24 (화) · 저녁루(마케팅) → 루프트온에게
 
 ### 11/26 STAMP 캐러셀 게시 전 — `case-stamp` 실서버 반영 부탁 (복사만, 새 문구 없음)
